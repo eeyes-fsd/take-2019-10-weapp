@@ -2,10 +2,31 @@
 .buttom {
   position: fixed;
   bottom: 0;
-  width: 100%
+  width: 100%;
 }
-.shopping-cart{
-  
+.shopping-cart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 116px;
+  background-color: rgb(255, 255, 255);
+}
+.cart {
+  height: 40px;
+  width: 40px;
+  margin-top: 19px;
+  margin-left: 32px
+}
+.cart-button{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 79px;
+  width: 146px;
+  color: #fff;
+  border-radius: 50px;
+  background-color: rgb(255,82,0);
 }
 .buttomTab {
   display: flex;
@@ -45,7 +66,10 @@ module.exports.getTime = getTime;
       <purchase></purchase>
     </div>
     <div class="buttom">
-      <div class="shopping-cart"></div>
+      <div class="shopping-cart" v-show="!ismine">
+        <img src="../image/购物车.png" class="cart" />
+        <div class="cart-button"><p>提交</p><p>订单</p></div>
+      </div>
       <nav class="buttomTab">
         <div class="purchase tab" :class="{'tabSelected':!ismine}" @click="ismine=false">选购</div>
         <div class="mine tab" :class="{'tabSelected':ismine}" @click="ismine=true">我的</div>
