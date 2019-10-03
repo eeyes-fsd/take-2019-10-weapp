@@ -1,4 +1,10 @@
 <style lang="less">
+.container{
+  .main{
+    height: 100%;
+    min-height: 800px;
+  }
+}
 .buttom {
   position: fixed;
   bottom: 0;
@@ -15,9 +21,9 @@
   height: 40px;
   width: 40px;
   margin-top: 19px;
-  margin-left: 32px
+  margin-left: 32px;
 }
-.cart-button{
+.cart-button {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +32,7 @@
   width: 146px;
   color: #fff;
   border-radius: 50px;
-  background-color: rgb(255,82,0);
+  background-color: rgb(255, 82, 0);
 }
 .buttomTab {
   display: flex;
@@ -59,16 +65,21 @@ module.exports.getTime = getTime;
 </wxs>
 <template>
   <div class="container">
-    <div wx:if="{{ ismine }}">
-      <mine></mine>
-    </div>
-    <div wx:else>
-      <purchase></purchase>
+    <div class="main">
+      <div v-if="ismine">
+        <mine></mine>
+      </div>
+      <div v-else>
+        <purchase></purchase>
+      </div>
     </div>
     <div class="buttom">
       <div class="shopping-cart" v-show="!ismine">
         <img src="../image/购物车.png" class="cart" />
-        <div class="cart-button"><p>提交</p><p>订单</p></div>
+        <div class="cart-button">
+          <p>提交</p>
+          <p>订单</p>
+        </div>
       </div>
       <nav class="buttomTab">
         <div class="purchase tab" :class="{'tabSelected':!ismine}" @click="ismine=false">选购</div>
@@ -91,14 +102,14 @@ wepy.page({
   },
   hooks: {
     // Page 级别 hook, 只对当前 Page 的 setData 生效。
-    'before-setData': function(dirty) {
-      if (Math.random() < 0.2) {
-        console.log('setData canceled');
-        return false; // Cancel setData
-      }
-      dirty.time = +new Date();
-      return dirty;
-    }
+    // 'before-setData': function(dirty) {
+    //   if (Math.random() < 0.2) {
+    //     console.log('setData canceled');
+    //     return false; // Cancel setData
+    //   }
+    //   dirty.time = +new Date();
+    //   return dirty;
+    // }
   },
   mixins: [testMixin],
   data: {
