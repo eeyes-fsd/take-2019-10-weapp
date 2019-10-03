@@ -1,5 +1,50 @@
+<style lang="less">
+.searchbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #fff;
+  width: 300px;
+  height: 30px;
+  border-radius: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  image {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px 0 15px;
+  }
+  input {
+    width: 230px;
+    height: 40px;
+  }
+}
+</style>
 <template>
-    <div>
-        thie is purchase
+  <div class="pauchase">
+    <div class="searchbox">
+      <image src="../image/放大镜.png" alt />
+      <input type="text" class="inputbox" />
     </div>
+    <div>thie is purchase</div>
+    <div v-for="(item,id) in listItems" :key="id">{{item.name}}</div>
+  </div>
 </template>
+<script>
+import wepy from '@wepy/core';
+import store from '../store';
+import { mapState, mapActions } from '@wepy/x';
+
+wepy.component({
+  store,
+  props: {
+    itemlist: []
+  },
+  data: {},
+  computed: mapState(['listItems']),
+  created() {
+    console.log(store.state.listItems);
+  }
+});
+</script>

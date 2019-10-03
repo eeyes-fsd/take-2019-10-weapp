@@ -1,4 +1,20 @@
 <style lang="less">
+  ._navg{
+    margin-top:3px;
+    height:40px;
+    width:250px;
+    padding-left:10px;
+    font-size:17px;
+    line-height:40px;
+    background-color:lightgrey;
+    border-radius:3px;
+  }
+.container{
+  .main{
+    height: 100%;
+    min-height: 800px;
+  }
+}
 .buttom {
   position: fixed;
   bottom: 0;
@@ -19,9 +35,9 @@
   height: 40px;
   width: 40px;
   margin-top: 19px;
-  margin-left: 32px
+  margin-left: 32px;
 }
-.cart-button{
+.cart-button {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +46,7 @@
   width: 146px;
   color: #fff;
   border-radius: 50px;
-  background-color: rgb(255,82,0);
+  background-color: rgb(255, 82, 0);
 }
 .buttomTab {
   display: flex;
@@ -64,16 +80,25 @@ module.exports.getTime = getTime;
 <template>
   <div class="container">
     <div v-if="ismine">
-      <goto></goto>
       <mine></mine>
     </div>
     <div v-else>
       <purchase></purchase>
     </div>
+    <div v-show="ismine">
+      <div class="_navg" v-on:click="adress">adress</div>
+      <div class="_navg" v-on:click="order">order</div>
+      <div class="_navg" v-on:click="cadress">cadress</div>
+      <div class="_navg" v-on:click="advise">advise</div>
+      <div class="_navg" v-on:click="aboutus">aboutus</div>
+    </div>
     <div class="buttom">
       <div class="shopping-cart" v-show="!ismine">
         <img src="../image/购物车.png" class="cart" />
-        <div class="cart-button"><p>提交</p><p>订单</p></div>
+        <div class="cart-button" v-on:click="pay">
+          <p>提交</p>
+          <p>订单</p>
+        </div>
       </div>
       <nav class="buttomTab">
         <div class="purchase tab" :class="{'tabSelected':!ismine}" @click="ismine=false">选购</div>
@@ -89,6 +114,7 @@ import eventHub from '../common/eventHub';
 import { mapState } from '@wepy/x';
 import store from '../store';
 import testMixin from '../mixins/test';
+
 wepy.page({
   store,
   config: {
@@ -96,14 +122,14 @@ wepy.page({
   },
   hooks: {
     // Page 级别 hook, 只对当前 Page 的 setData 生效。
-    'before-setData': function(dirty) {
-      if (Math.random() < 0.2) {
-        console.log('setData canceled');
-        return false; // Cancel setData
-      }
-      dirty.time = +new Date();
-      return dirty;
-    }
+    // 'before-setData': function(dirty) {
+    //   if (Math.random() < 0.2) {
+    //     console.log('setData canceled');
+    //     return false; // Cancel setData
+    //   }
+    //   dirty.time = +new Date();
+    //   return dirty;
+    // }
   },
   mixins: [testMixin],
   data: {
@@ -115,7 +141,39 @@ wepy.page({
       return 'computed - ' + this.mynum;
     }
   },
-  methods: {},
+  methods: {
+    adress: function (event) {
+      wx.navigateTo({
+        url: '/pages/adress'
+      })
+    },
+    aboutus: function (event) {
+      wx.navigateTo({
+        url: '/pages/aboutus'
+      })
+    },
+    pay: function (event) {
+      wx.navigateTo({
+        url: '/pages/pay'
+      })
+    },
+    advise: function (event) {
+      wx.navigateTo({
+       url: '/pages/advise'
+      })
+    },
+    cadress: function (event) {
+      wx.navigateTo({
+       url: '/pages/cadress'
+      })
+    },
+    order: function (event) {
+      wx.navigateTo({
+        url: '/pages/order'
+      })
+    }
+
+},
   created() {}
 });
 </script>
@@ -129,8 +187,7 @@ wepy.page({
       group: '../components/group',
       "slide-view": "module:miniprogram-slide-view",
       mine:'../components/mine',
-      purchase:'../components/purchase',
-      goto:'../components/goto'
+      purchase:'../components/purchase'
     }
 }
 </config>

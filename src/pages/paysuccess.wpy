@@ -1,12 +1,11 @@
-
 <template>
   <div class="container">
-    我的地址
+    支付成功
   </div>
 </template>
 
 <script>
   import wepy from '@wepy/core';
   wepy.page({
-  });
+  })
 </script>

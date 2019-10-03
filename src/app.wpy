@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+  background-color: rgb(242, 242, 242);
 }
 </style>
 
@@ -15,7 +16,6 @@ import eventHub from './common/eventHub';
 import vuex from '@wepy/x';
 
 wepy.use(vuex);
-
 
 wepy.app({
   hooks: {
@@ -39,16 +39,15 @@ wepy.app({
   },
 
   methods: {
-
-    sleep (s) {
+    sleep(s) {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve('promise resolved')
-        }, s * 1000)
-      })
+          resolve('promise resolved');
+        }, s * 1000);
+      });
     },
 
-    async testAsync () {
+    async testAsync() {
       let d = await this.sleep(3);
       console.log(d);
     }
@@ -64,7 +63,8 @@ wepy.app({
       'pages/cadress',
       'pages/pay',
       'pages/advise',
-      'pages/aboutus'
+      'pages/aboutus',
+      'pages/paysuccess'
     ],
     window: {
       backgroundTextStyle: 'light',

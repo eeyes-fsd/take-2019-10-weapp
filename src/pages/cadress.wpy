@@ -1,0 +1,12 @@
+
+<template>
+  <div class="container">
+    修改地址
+  </div>
+</template>
+
+<script>
+  import wepy from '@wepy/core';
+  wepy.page({
+  });
+</script>

@@ -1,0 +1,12 @@
+
+<template>
+  <div class="container">
+    意见反馈
+  </div>
+</template>
+
+<script>
+  import wepy from '@wepy/core';
+  wepy.page({
+  });
+</script>

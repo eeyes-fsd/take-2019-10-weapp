@@ -1,0 +1,26 @@
+<style>
+  .paysuccess{
+    height:50px;
+    width:200px;
+    background-color:yellow;
+  }
+</style>
+<template>
+  <div class="container">
+    支付页面
+  </div>
+  <div class="paysuccess" v-on:click="paysuccess">支付</div>
+</template>
+
+<script>
+  import wepy from '@wepy/core';
+  wepy.page({
+    methods: {
+      paysuccess: function (event) {
+        wx.navigateTo({
+          url: '/pages/paysuccess'
+        })
+      }
+    }
+  })
+</script>
