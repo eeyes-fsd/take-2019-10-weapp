@@ -1,0 +1,10 @@
+<style>
+  .container{
+    height:30px;
+    width:100px;
+    background-color:red;
+  }
+</style>
+<template>
+  <div class="container"></div>
+</template>

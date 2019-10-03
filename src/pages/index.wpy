@@ -4,6 +4,10 @@
   bottom: 0;
   width: 100%;
 }
+.container{
+  width:100%;
+  background-color:green;
+}
 .shopping-cart {
   display: flex;
   flex-direction: row;
@@ -59,10 +63,11 @@ module.exports.getTime = getTime;
 </wxs>
 <template>
   <div class="container">
-    <div wx:if="{{ ismine }}">
+    <div v-if="ismine">
+      <goto></goto>
       <mine></mine>
     </div>
-    <div wx:else>
+    <div v-else>
       <purchase></purchase>
     </div>
     <div class="buttom">
@@ -124,7 +129,8 @@ wepy.page({
       group: '../components/group',
       "slide-view": "module:miniprogram-slide-view",
       mine:'../components/mine',
-      purchase:'../components/purchase'
+      purchase:'../components/purchase',
+      goto:'../components/goto'
     }
 }
 </config>
