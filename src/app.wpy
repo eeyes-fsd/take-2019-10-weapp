@@ -1,6 +1,7 @@
 <style lang="less">
 page{
   height: 100%;
+  background-color: rgb(242, 242, 242);
 }
 .container {
   height: 100%;
@@ -9,7 +10,6 @@ page{
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  background-color: rgb(242, 242, 242);
 }
 </style>
 

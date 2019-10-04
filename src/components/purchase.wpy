@@ -23,13 +23,17 @@
     height: 40px;
   }
 }
+
+//商品容器
 .list-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  padding-bottom: 110px;
 }
+//商品
 .items {
   display: flex;
   justify-content: space-between;
@@ -52,11 +56,11 @@
     width: 100px;
     .button {
       text-align: center;
-      line-height: 25px;
+      line-height: 25px; //垂直居中
       width: 25px;
       height: 25px;
       border-radius: 10px;
-      padding: 0;
+      padding: 0; //去除wx默认样式，实现水平居中
       background-color: @button;
       color: @white;
     }
@@ -84,11 +88,12 @@
         <div>{{item.name}}</div>
         <div class="selection">
           <div v-if="item.quantity">
-            <button class="order-button">下单</button>
+            <button class="button" @tap="plus(item.id)">+</button>
+            <div>{{item.quantity}}</div>
+            <button class="button" @tap="reduce(item.id)">-</button>
           </div>
           <div v-else>
-            <button class="button">+</button>
-            <button class="button">-</button>
+            <button class="order-button" @tap="plus(item.id)">下单</button>
           </div>
         </div>
       </div>
@@ -102,6 +107,20 @@ wepy.component({
   props: {
     lists: Array
   },
-  data: {}
+  data: {},
+  methods: {
+    plus: function(key) {
+      var list = this.$parent.list;
+      list.filter(x => {
+        return x.id === key;
+      })[0].quantity += 1; //曲线救国
+    },
+    reduce: function(key) {
+      var list = this.$parent.list;
+      list.filter(x => {
+        return x.id === key;
+      })[0].quantity -= 1; //曲线救国
+    }
+  }
 });
 </script>
