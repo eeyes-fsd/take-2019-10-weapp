@@ -1,24 +1,23 @@
 <style lang="less">
-<<<<<<< HEAD
-  ._navg{
-    margin-top:3px;
-    height:40px;
-    width:250px;
-    padding-left:10px;
-    font-size:17px;
-    line-height:40px;
-    background-color:lightgrey;
-    border-radius:3px;
-  }
-.container{
-  .main{
-    height: 100%;
-    min-height: 800px;
-=======
+@white:#fff;
+@center: {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+._navg {
+  margin-top: 3px;
+  height: 40px;
+  width: 250px;
+  padding-left: 10px;
+  font-size: 17px;
+  line-height: 40px;
+  background-color: lightgrey;
+  border-radius: 3px;
+}
 .container {
   .main {
-    overflow: auto
->>>>>>> ce18925fc95279f26d427de39d602e012f33eb0b
+    min-height: 800px;
   }
 }
 .buttom {
@@ -26,50 +25,52 @@
   bottom: 0;
   width: 100%;
 }
-.container{
-  width:100%;
-  background-color:green;
+.container {
+  width: 100%;
+  background-color: green;
 }
+
+//购物车
 .shopping-cart {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 116px;
-  background-color: rgb(255, 255, 255);
-}
-.cart {
-  height: 40px;
-  width: 40px;
-  margin-top: 19px;
-  margin-left: 32px;
-}
-.cart-button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 79px;
-  width: 146px;
-  color: #fff;
-  border-radius: 50px;
-  background-color: rgb(255, 82, 0);
+  justify-content: space-between;
+  height: 60px;
+  background-color: rgb(255, 255, 255);
+  font-size: 13px;
+  .cart-img {
+    height: 30px;
+    width: 30px;
+    margin-left: 20px;
+  }
+  .cart-button {
+    @center();
+    flex-direction: column;
+    height: 39px;
+    width: 66px;
+    color: @white;
+    margin-right: 20px;
+    border-radius: 50px;
+    background-color: rgb(255, 82, 0);
+  }
 }
+
+//底部tab
 .buttomTab {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100px;
-}
-.tab {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  background-color: rgb(201, 205, 207);
-  // font-size: 48px
-}
-.tabSelected {
-  background-color: rgb(255, 87, 0);
+  height: 50px;
+  color: @white;
+  font-size: 20px;
+  .tab {
+    @center();
+    width: 50%;
+    background-color: rgb(201, 205, 207);
+  }
+  .tabSelected {
+    background-color: rgb(255, 87, 0);
+  }
 }
 </style>
 <wxs module="m1" lang="babel">
@@ -85,7 +86,6 @@ module.exports.getTime = getTime;
 </wxs>
 <template>
   <div class="container">
-<<<<<<< HEAD
     <div v-if="ismine">
       <mine></mine>
     </div>
@@ -93,25 +93,16 @@ module.exports.getTime = getTime;
       <purchase></purchase>
     </div>
     <div v-show="ismine">
-      <div class="_navg" v-on:click="adress">adress</div>
-      <div class="_navg" v-on:click="order">order</div>
-      <div class="_navg" v-on:click="cadress">cadress</div>
-      <div class="_navg" v-on:click="advise">advise</div>
-      <div class="_navg" v-on:click="aboutus">aboutus</div>
-=======
-    <div class="main">
-      <div v-if="ismine">
-        <mine></mine>
-      </div>
-      <div v-else>
-        <purchase :listItems="list"></purchase>
-      </div>
->>>>>>> ce18925fc95279f26d427de39d602e012f33eb0b
+      <div class="_navg" @click="adress">adress</div>
+      <div class="_navg" @click="order">order</div>
+      <div class="_navg" @click="cadress">cadress</div>
+      <div class="_navg" @click="advise">advise</div>
+      <div class="_navg" @click="aboutus">aboutus</div>
     </div>
     <div class="buttom">
       <div class="shopping-cart" v-show="!ismine">
-        <img src="../image/购物车.png" class="cart" />
-        <div class="cart-button" v-on:click="pay">
+        <img src="../image/购物车.png" class="cart-img" />
+        <div class="cart-button" @click="pay">
           <p>提交</p>
           <p>订单</p>
         </div>
@@ -168,38 +159,37 @@ wepy.page({
     }
   },
   methods: {
-    adress: function (event) {
+    adress: function(event) {
       wx.navigateTo({
         url: '/pages/adress'
-      })
+      });
     },
-    aboutus: function (event) {
+    aboutus: function(event) {
       wx.navigateTo({
         url: '/pages/aboutus'
-      })
+      });
     },
-    pay: function (event) {
+    pay: function(event) {
       wx.navigateTo({
         url: '/pages/pay'
-      })
+      });
     },
-    advise: function (event) {
+    advise: function(event) {
       wx.navigateTo({
-       url: '/pages/advise'
-      })
+        url: '/pages/advise'
+      });
     },
-    cadress: function (event) {
+    cadress: function(event) {
       wx.navigateTo({
-       url: '/pages/cadress'
-      })
+        url: '/pages/cadress'
+      });
     },
-    order: function (event) {
+    order: function(event) {
       wx.navigateTo({
         url: '/pages/order'
-      })
+      });
     }
-
-},
+  },
   created() {}
 });
 </script>
