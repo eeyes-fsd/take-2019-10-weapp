@@ -1,5 +1,59 @@
+<style lang="less">
+._navg {
+  margin-top: 3px;
+  height: 40px;
+  width: 250px;
+  padding-left: 10px;
+  font-size: 17px;
+  line-height: 40px;
+  background-color: lightgrey;
+  border-radius: 3px;
+}
+</style>
 <template>
-    <div>
-        this is mine
-    </div>
+  <div>
+    <div class="_navg" @tap="adress">adress</div>
+    <div class="_navg" @tap="order">order</div>
+    <div class="_navg" @tap="cadress">cadress</div>
+    <div class="_navg" @tap="advise">advise</div>
+    <div class="_navg" @tap="aboutus">aboutus</div>
+  </div>
 </template>
+
+<script>
+import wepy from '@wepy/core';
+wepy.page({
+  methods: {
+    adress: function(event) {
+      wx.navigateTo({
+        url: '/pages/adress'
+      });
+    },
+    aboutus: function(event) {
+      wx.navigateTo({
+        url: '/pages/aboutus'
+      });
+    },
+    pay: function(event) {
+      wx.navigateTo({
+        url: '/pages/pay'
+      });
+    },
+    advise: function(event) {
+      wx.navigateTo({
+        url: '/pages/advise'
+      });
+    },
+    cadress: function(event) {
+      wx.navigateTo({
+        url: '/pages/cadress'
+      });
+    },
+    order: function(event) {
+      wx.navigateTo({
+        url: '/pages/order'
+      });
+    }
+  }
+});
+</script>
