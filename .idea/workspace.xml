@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0397a259-ee15-451d-9c7a-07057c77855b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/aboutus.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/aboutus.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/adress.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/adress.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/advise.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/advise.wpy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/pay.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pay.wpy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

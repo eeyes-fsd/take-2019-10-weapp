@@ -8,8 +8,9 @@
 <template>
   <div class="container">
     支付页面
+
+    <button class="paysuccess" v-on:click="paysuccess">支付</button>
   </div>
-  <div class="paysuccess" v-on:click="paysuccess">支付</div>
 </template>
 
 <script>

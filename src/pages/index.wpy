@@ -26,6 +26,7 @@
   width: 100%;
 }
 .container {
+  justify-content: flex-start;
   width: 100%;
   background-color: green;
 }
