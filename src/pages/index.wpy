@@ -1,5 +1,6 @@
 <style lang="less">
-@white:#fff;
+@white: #fff;
+@bgc: rgb(242, 242, 242);
 @center: {
   display: flex;
   justify-content: center;
@@ -15,11 +16,8 @@
   background-color: lightgrey;
   border-radius: 3px;
 }
-.container {
-  .main {
-    min-height: 800px;
-  }
-}
+
+//底部定位
 .buttom {
   position: fixed;
   bottom: 0;
@@ -28,7 +26,7 @@
 .container {
   justify-content: flex-start;
   width: 100%;
-  background-color: green;
+  background-color: @bgc;
 }
 
 //购物车
@@ -89,16 +87,14 @@ module.exports.getTime = getTime;
   <div class="container">
     <div v-if="ismine">
       <mine></mine>
-    </div>
-    <div v-else>
-      <purchase></purchase>
-    </div>
-    <div v-show="ismine">
       <div class="_navg" @click="adress">adress</div>
       <div class="_navg" @click="order">order</div>
       <div class="_navg" @click="cadress">cadress</div>
       <div class="_navg" @click="advise">advise</div>
       <div class="_navg" @click="aboutus">aboutus</div>
+    </div>
+    <div v-else>
+      <purchase :lists="list"></purchase>
     </div>
     <div class="buttom">
       <div class="shopping-cart" v-show="!ismine">
@@ -141,15 +137,17 @@ wepy.page({
   },
   mixins: [testMixin],
   data: {
-    ismine: true,
+    ismine: false,
     list: [
       {
         name: '菠萝',
-        id: '123'
+        id: '123',
+        quantity: 0
       },
       {
         name: '苹果',
-        id: '12345'
+        id: '12345',
+        quantity: 1
       }
     ]
   },

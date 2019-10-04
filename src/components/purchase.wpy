@@ -1,34 +1,98 @@
 <style lang="less">
+@white: #fff;
+@bgc: rgb(242, 242, 242);
+@button: rgb(255, 87, 0);
+//搜索框
 .searchbox {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  background-color: #fff;
+  background-color: @white;
   width: 300px;
-  height: 30px;
-  border-radius: 15px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  image {
+  height: 35px;
+  border-radius: 20px;
+  margin: 20px auto;
+  .glass {
     width: 20px;
     height: 20px;
     margin: 0 5px 0 15px;
   }
-  input {
+  .inputbox {
     width: 230px;
     height: 40px;
+  }
+}
+.list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+.items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  width: 330px;
+  border-radius: 20px;
+  margin: 6px 0;
+  background-color: @white;
+  .item-image {
+    width: 90px;
+    height: 90px;
+    background-color: @bgc;
+    margin: 0 30px;
+  }
+  .selection > view {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    .button {
+      text-align: center;
+      line-height: 25px;
+      width: 25px;
+      height: 25px;
+      border-radius: 10px;
+      padding: 0;
+      background-color: @button;
+      color: @white;
+    }
+    .order-button {
+      line-height: 35px;
+      width: 60px;
+      height: 35px;
+      border-radius: 13px;
+      padding: 0;
+      background-color: @button;
+      color: @white;
+    }
   }
 }
 </style>
 <template>
   <div class="pauchase">
     <div class="searchbox">
-      <image src="../image/放大镜.png" alt />
+      <image src="../image/放大镜.png" alt class="glass" />
       <input type="text" class="inputbox" />
     </div>
-    <div>thie is purchase</div>
-    <div v-for="(item,id) in listItems" :key="id">{{item.name}}</div>
+    <div class="list-container">
+      <div v-for="(item,id) in lists" :key="id" class="items">
+        <img class="item-image" />
+        <div>{{item.name}}</div>
+        <div class="selection">
+          <div v-if="item.quantity">
+            <button class="order-button">下单</button>
+          </div>
+          <div v-else>
+            <button class="button">+</button>
+            <button class="button">-</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -36,8 +100,8 @@ import wepy from '@wepy/core';
 
 wepy.component({
   props: {
-    listItems: []
+    lists: Array
   },
-  data: {},
+  data: {}
 });
 </script>
