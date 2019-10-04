@@ -33,18 +33,11 @@
 </template>
 <script>
 import wepy from '@wepy/core';
-import store from '../store';
-import { mapState, mapActions } from '@wepy/x';
 
 wepy.component({
-  store,
   props: {
-    itemlist: []
+    listItems: []
   },
   data: {},
-  computed: mapState(['listItems']),
-  created() {
-    console.log(store.state.listItems);
-  }
 });
 </script>

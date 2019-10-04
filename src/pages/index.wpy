@@ -1,4 +1,5 @@
 <style lang="less">
+<<<<<<< HEAD
   ._navg{
     margin-top:3px;
     height:40px;
@@ -13,6 +14,11 @@
   .main{
     height: 100%;
     min-height: 800px;
+=======
+.container {
+  .main {
+    overflow: auto
+>>>>>>> ce18925fc95279f26d427de39d602e012f33eb0b
   }
 }
 .buttom {
@@ -79,6 +85,7 @@ module.exports.getTime = getTime;
 </wxs>
 <template>
   <div class="container">
+<<<<<<< HEAD
     <div v-if="ismine">
       <mine></mine>
     </div>
@@ -91,6 +98,15 @@ module.exports.getTime = getTime;
       <div class="_navg" v-on:click="cadress">cadress</div>
       <div class="_navg" v-on:click="advise">advise</div>
       <div class="_navg" v-on:click="aboutus">aboutus</div>
+=======
+    <div class="main">
+      <div v-if="ismine">
+        <mine></mine>
+      </div>
+      <div v-else>
+        <purchase :listItems="list"></purchase>
+      </div>
+>>>>>>> ce18925fc95279f26d427de39d602e012f33eb0b
     </div>
     <div class="buttom">
       <div class="shopping-cart" v-show="!ismine">
@@ -133,7 +149,17 @@ wepy.page({
   },
   mixins: [testMixin],
   data: {
-    ismine: true
+    ismine: true,
+    list: [
+      {
+        name: '菠萝',
+        id: '123'
+      },
+      {
+        name: '苹果',
+        id: '12345'
+      }
+    ]
   },
   computed: {
     ...mapState(['counter']),
