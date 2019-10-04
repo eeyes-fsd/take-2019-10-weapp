@@ -1,7 +1,43 @@
-
+<style>
+  .back{
+    height:40px;
+    width:95%;
+    margin-top:5px;
+    margin-bottom:5px;
+    font-size:18px;
+    text-align:center;
+    line-height:40px;
+    color:white;
+    border-radius:10px;
+    background-color:rgb(255,169,107);
+  }
+  .container{
+    justify-content:start;
+    background-color:#f1f1f1;
+  }
+  .text{
+    width:85%;
+    height:300px;
+    margin-top:10px;
+    background-color:white;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.2);
+    border-radius:2px;
+    padding:10px;
+    font-size:16px;
+    line-height:22px;
+    word-wrap:break-word;
+    word-break:break-all;
+    color:grey;
+  }
+</style>
 <template>
   <div class="container">
-    关于我们
+    <div class="back">
+      关于我们
+    </div>
+    <div class="text">
+      欢迎加入e瞳网！！！！！！欢迎欢迎欢迎欢迎欢迎欢迎欢迎欢迎
+    </div>
   </div>
 </template>
 

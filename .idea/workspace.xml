@@ -14,7 +14,7 @@
   <component name="ProjectId" id="1RgWcXg0lP8AODOxWAxbWOMdreH" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/project2" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -48,6 +48,8 @@
       <workItem from="1570089300255" duration="8499000" />
       <workItem from="1570101135119" duration="513000" />
       <workItem from="1570109619270" duration="5005000" />
+      <workItem from="1570159573139" duration="2683000" />
+      <workItem from="1570171429551" duration="1780000" />
     </task>
     <servers />
   </component>
