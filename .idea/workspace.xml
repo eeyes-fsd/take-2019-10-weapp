@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0397a259-ee15-451d-9c7a-07057c77855b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/image/放大镜.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/goto.wpy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/list.wpy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/purchase.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/purchase.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/aboutus.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/aboutus.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/adress.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/adress.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/advise.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/advise.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/cadress.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cadress.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/order.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/order.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/pay.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pay.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="0397a259-ee15-451d-9c7a-07057c77855b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +47,7 @@
       <updated>1570089298853</updated>
       <workItem from="1570089300255" duration="8499000" />
       <workItem from="1570101135119" duration="513000" />
-      <workItem from="1570109619270" duration="4179000" />
+      <workItem from="1570109619270" duration="5005000" />
     </task>
     <servers />
   </component>
