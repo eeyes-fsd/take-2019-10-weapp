@@ -117,10 +117,10 @@ wepy.component({
   },
   computed: {
     ...mapState(['goodslist']),
-    search: function(reg) {
-      console.log(this);
+    search() {
       var re = new RegExp(this.inputs);
-      return this.list.filter(x => {
+      return store.state.goodslist.filter(x => {
+        x.quantity > -1;
         return re.test(x.name);
       });
     }
@@ -128,7 +128,7 @@ wepy.component({
   methods: {
     plus: function(key) {
       store.commit('increment', key);
-      console.log(this)
+      console.log(this);
     },
     reduce: function(key) {
       store.commit('decrement', key);

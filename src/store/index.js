@@ -7,12 +7,12 @@ export default new Vuex.Store({
       {
         name: '菠萝',
         id: '123',
-        quantity: 1
+        quantity: 0
       },
       {
         name: '苹果',
         id: '12345',
-        quantity: 1
+        quantity: 0
       },
       {
         name: '里头',
