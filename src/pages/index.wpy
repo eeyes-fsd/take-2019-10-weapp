@@ -235,13 +235,13 @@ module.exports.getTime = getTime;
             <img class="item-image" />
             <div>{{item.name}}</div>
             <div class="selection">
-              <div v-if="item.quantity">
+              <div v-if="item.quantity===0">
+                <button class="order-button" @tap="plus(item.id)">下单</button>
+              </div>
+              <div v-else>
                 <button class="button" @tap="plus(item.id)">+</button>
                 <div>{{item.quantity}}</div>
                 <button class="button" @tap="reduce(item.id)">-</button>
-              </div>
-              <div v-else>
-                <button class="order-button" @tap="plus(item.id)">下单</button>
               </div>
             </div>
           </div>
@@ -311,12 +311,16 @@ wepy.page({
         return x.quantity !== 0;
       });
     },
-    search: function(reg) {
-      console.log(this);
-      var re = new RegExp(this.inputs);
+    search() {
+      var re = new RegExp(this.inputs)
       return store.state.goodslist.filter(x => {
+        console.log(re.test(x.name));
+        x.quantity>-1;
         return re.test(x.name);
       });
+      return store.state.goodslist.filter(x=>{
+        return x.quantity>-1;
+      })
     },
     isempty() {
       for (let item of store.state.goodslist) {
@@ -331,7 +335,7 @@ wepy.page({
     pay: function(event) {
       wx.navigateTo({
         url: '/pages/pay'
-      })
+      });
     },
     plus: function(key) {
       store.commit('increment', key);
@@ -345,7 +349,7 @@ wepy.page({
     }
   },
   created() {}
-})
+});
 </script>
 <config>
 {
