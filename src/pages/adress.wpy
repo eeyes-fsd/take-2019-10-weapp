@@ -1,7 +1,100 @@
+<style>
+.container{
+  background-color:#f1f1f1;
+  justify-content: flex-start;
+}
+  .back{
+    height:40px;
+    width:95%;
+    margin-top:5px;
+    margin-bottom:5px;
+    font-size:18px;
+    text-align:center;
+    line-height:40px;
+    color:white;
+    border-radius:10px;
+    background-color:rgb(255, 87, 0);
+  }
+  .icon-right{
 
+  }
+  .adressinfo{
+    height:35px;
+    width:85%;
+    margin-top:10px;
+    background-color:white;
+    padding-left:5px;
+    font-size:13px;
+    color:black;
+    line-height:35px;
+    text-align:left;
+    border-radius:5px;
+  }
+  .adressdetail{
+    margin-top:20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height:200px;
+    width:90%;
+  }
+  .detail_name{
+    height:40px;
+    width:100%;
+    background-color:rgb(255, 87, 0);
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    font-size:18px;
+    color:white;
+    text-align:center;
+    line-height:40px;
+  }
+  .detail_info{
+    height:160px;
+    width:100%;
+    background-color:white;
+    border-bottom-left-radius:3px;
+    border-bottom-right-radius:3px;
+  }
+  .detail_info_sgl{
+    height:32px;
+    width:100%;
+    font-size:13px;
+    text-align-left;
+    line-height:32px;
+    padding-left:15px;
+  }
+  .add{
+    height:50px;
+    width:80%;
+    background-color:orange;
+    margin-top:50px;
+    border-radius:30px;
+    font-size:18px;
+    line-height:50px;
+    text-align:center;
+    color:white;
+  }
+</style>
 <template>
   <div class="container">
-    我的地址
+    <div class="back">
+      我的地址
+    </div>
+    <div class="adressinfo">彭康书院-东二十-101</div>
+    <div class="adressinfo">彭康书院-东二十-101</div>
+    <div class="adressdetail">
+      <div class="detail_name">地址一</div>
+      <div class="detail_info">
+        <div class="detail_info_sgl">收货人：</div>
+        <div class="detail_info_sgl">书院：</div>
+        <div class="detail_info_sgl">门牌号：</div>
+        <div class="detail_info_sgl">联系电话：</div>
+        <div class="detail_info_sgl">备注：</div>
+      </div>
+    </div>
+    <div class="add">新增收货地址</div>
   </div>
 </template>
 
