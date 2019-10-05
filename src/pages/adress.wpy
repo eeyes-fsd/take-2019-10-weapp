@@ -3,12 +3,13 @@
   background-color:#f1f1f1;
   justify-content: flex-start;
 }
+/*页面返回头*/
 .back{
   display: flex;
   flex-direction:row;
   height:40px;
   width:95%;
-  margin-top:5px;
+  margin-top:30px;
   margin-bottom:5px;
   border-radius:10px;
   background-color:rgb(255, 87, 0);
@@ -26,43 +27,46 @@
   line-height:40px;
   color:white;
 }
+/*整个地址的容器*/
 .adressbox{
-  margin-top:15px;
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
   align-items: center;
   width:100%;
 }
+/*地址简略信息容器*/
   .adressinfo{
     display:flex;
     flex-direction:row;
-    height:35px;
-    width:85%;
+    height:40px;
+    width:90%;
     margin-top:10px;
     background-color:white;
     border-radius:5px;
+    box-shadow: 0px 0px 12px rgba(0,0,0,.2);
   }
   .adressinfo_text{
-    height:35px;
+    height:40px;
     width:85%;
-    padding-left:5px;
+    padding-left:10px;
     font-size:13px;
     color:black;
-    line-height:35px;
+    line-height:40px;
     text-align:left;
   }
   .adressinfo_ciconbox{
-    height:35px;
+    height:40px;
     width:15%;
-    padding-top:8px;
-    padding-bottom:8px;
+    padding-top:10px;
+    padding-bottom:10px;
     padding-left:20px;
   }
   .adressinfo_cicon{
-     height:19px;
+     height:20px;
      width:19px;
   }
+  /*地址详情容器*/
   .adressdetail{
     margin-top:20px;
     display:flex;
@@ -70,16 +74,19 @@
     align-items: center;
     justify-content: space-between;
     height:200px;
-    width:90%;
+    width:85%;
     margin-bottom:20px;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.2);
   }
   .detail_name{
     height:40px;
     width:100%;
     background-color:rgb(255, 87, 0);
-    border-top-left-radius:20px;
-    border-top-right-radius:20px;
-    font-size:18px;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    font-size:15px;
     color:white;
     text-align:center;
     line-height:40px;
@@ -94,14 +101,15 @@
   .detail_info_sgl{
     height:32px;
     width:100%;
-    font-size:13px;
+    font-size:12px;
     text-align-left;
     line-height:32px;
     padding-left:15px;
   }
+  /*新建地址按钮*/
   .add{
     height:50px;
-    width:70%;
+    width:50%;
     background-color:rgb(255, 87, 0);
     margin-top:50px;
     border-radius:30px;
@@ -118,11 +126,11 @@
       <div class="back-text">我的地址</div>
       <img class="back-icon" />
     </div>
-    <div class="adressbox" data-id="1" @click="showdetail" style="background-color:{{currentid==1?'rgba(0,0,0,.2)':''}}">
+    <div class="adressbox" data-id="1" @click="showdetail" style="background-color:{{currentid==1?'rgba(218, 218, 218, 0.5)':''}};margin-top:{{currentid==1?'15px':''}}">
       <div class="adressinfo">
         <div class="adressinfo_text">彭康书院-东二十-101</div>
         <div class="adressinfo_ciconbox">
-          <img src="../image/编辑按钮.png" class="adressinfo_cicon"  @click="edit"></img>
+          <img src="../image/编辑按钮.png" class="adressinfo_cicon"  @click.stop="edit"/>
         </div>
       </div>
       <div class="adressdetail" v-if="currentid==1">
@@ -137,15 +145,34 @@
       </div>
     </div>
 
-    <div class="adressbox" style="background-color:{{currentid==2?'rgba(0,0,0,.2)':''}}">
-      <div class="adressinfo" data-id="2" @click="edit">
+    <div class="adressbox" style="background-color:{{currentid==2?'rgba(218, 218, 218, 0.5)':''}};margin-top:{{currentid==2?'15px':''}}">
+      <div class="adressinfo" data-id="2" @click="showdetail">
         <div class="adressinfo_text">彭康书院-东二十-120</div>
         <div class="adressinfo_ciconbox">
-          <img src="../image/编辑按钮.png" class="adressinfo_cicon" ></img>
+          <img src="../image/编辑按钮.png" class="adressinfo_cicon"/>
         </div>
       </div>
       <div class="adressdetail" v-if="currentid==2">
         <div class="detail_name">地址二</div>
+        <div class="detail_info">
+          <div class="detail_info_sgl">收货人：</div>
+          <div class="detail_info_sgl">书院：</div>
+          <div class="detail_info_sgl">门牌号：</div>
+          <div class="detail_info_sgl">联系电话：</div>
+          <div class="detail_info_sgl">备注：</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="adressbox" data-id="3" @click="showdetail" style="background-color:{{currentid==3?'rgba(218, 218, 218, 0.5)':''}};margin-top:{{currentid==3?'15px':''}}">
+      <div class="adressinfo">
+        <div class="adressinfo_text">文治书院-西二十-804</div>
+        <div class="adressinfo_ciconbox">
+          <img src="../image/编辑按钮.png" class="adressinfo_cicon"  @click.stop="edit"/>
+        </div>
+      </div>
+      <div class="adressdetail" v-if="currentid==3">
+        <div class="detail_name">地址三</div>
         <div class="detail_info">
           <div class="detail_info_sgl">收货人：</div>
           <div class="detail_info_sgl">书院：</div>
@@ -168,17 +195,31 @@
     },
     methods:{
       plus:function(){
-        this.currentid=-1
+          wx.navigateTo({
+              //isadd跳转到修改地址页面时判断是增加地址还是修改地址，默认值为修改地址
+              url: '/pages/cadress?isadd='+1
+          })
       },
       navback:function() {
           wx.navigateBack()
       },
       edit:function(e){
-          this.currentid=e.currentTarget.dataset.id
+          wx.navigateTo({
+              //isadd跳转到修改地址页面时判断是增加地址还是修改地址，默认值为修改地址
+              url: '/pages/cadress?isadd='+0+'&adressid='+1
+          })
       },
       showdetail:function(e){
-          this.currentid=e.currentTarget.dataset.id
+          if(this.currentid==e.currentTarget.dataset.id){
+              this.currentid=-1;
+          }
+          else{this.currentid=e.currentTarget.dataset.id}
       }
     }
   });
 </script>
+<config>
+  {
+  "navigationStyle": "custom"
+  }
+</config>

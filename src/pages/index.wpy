@@ -269,35 +269,10 @@ wepy.page({
     }
   },
   methods: {
-    adress: function(event) {
-      wx.navigateTo({
-        url: '/pages/adress'
-      })
-    },
-    aboutus: function(event) {
-      wx.navigateTo({
-        url: '/pages/aboutus'
-      })
-    },
     pay: function(event) {
       wx.navigateTo({
         url: '/pages/pay'
       })
-    },
-    advise: function(event) {
-      wx.navigateTo({
-        url: '/pages/advise'
-      })
-    },
-    cadress: function(event) {
-      wx.navigateTo({
-        url: '/pages/cadress'
-      })
-    },
-    order: function(event) {
-        wx.navigateTo({
-            url: '/pages/order'
-        })
     },
     plus: function(key) {
       var list = this.list;
