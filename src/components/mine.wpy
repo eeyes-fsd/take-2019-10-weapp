@@ -81,11 +81,6 @@ wepy.page({
         url: '/pages/aboutus'
       });
     },
-    pay: function(event) {
-      wx.navigateTo({
-        url: '/pages/pay'
-      });
-    },
     advise: function(event) {
       wx.navigateTo({
         url: '/pages/advise'
