@@ -331,7 +331,7 @@ wepy.page({
     pay: function(event) {
       wx.navigateTo({
         url: '/pages/pay'
-      });
+      })
     },
     plus: function(key) {
       store.commit('increment', key);
@@ -345,7 +345,7 @@ wepy.page({
     }
   },
   created() {}
-});
+})
 </script>
 <config>
 {

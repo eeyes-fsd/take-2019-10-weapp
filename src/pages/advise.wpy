@@ -3,16 +3,27 @@
     justify-content:start;
   }
   .back{
+    display: flex;
+    flex-direction:row;
     height:40px;
     width:95%;
-    margin-top:5px;
+    margin-top:30px;
     margin-bottom:5px;
+    border-radius:10px;
+    background-color:rgb(255, 87, 0);
+  }
+  .back-icon{
+    padding:10px;
+    height:20px;
+    width:5%;
+  }
+  .back-text{
+    height:40px;
+    width:90%;
     font-size:18px;
     text-align:center;
     line-height:40px;
     color:white;
-    border-radius:10px;
-    background-color:rgb(255,169,107);
   }
   .box{
     margin-top:25px;
@@ -45,7 +56,7 @@
     width:50%;
     margin-top:25px;
     font-size:18px;
-    background-color:rgb(255,169,107);
+    background-color:rgb(255, 87, 0);
     color:white;
     text-align:center;
     line-height:40px;
@@ -54,7 +65,11 @@
 </style>
 <template>
   <div class="container">
-    <div class="back">意见反馈</div>
+    <div class="back">
+      <img src="../image/箭头.png" class="back-icon"  @click="navback"/>
+      <div class="back-text">意见反馈</div>
+      <img class="back-icon" />
+    </div>
     <div class="box">
       <textarea type="text" placeholder="请输入您的意见" maxlength="300" class="inputbox" />
     </div>
@@ -65,5 +80,15 @@
 <script>
   import wepy from '@wepy/core';
   wepy.page({
-  });
+    methods:{
+      navback:function(){
+        wx.navigateBack()
+      }
+    }
+  })
 </script>
+<config>
+  {
+  "navigationStyle": "custom"
+  }
+</config>

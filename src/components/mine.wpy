@@ -51,10 +51,6 @@
         <div>我的订单</div>
         <img src="../image/箭头.png" alt class="arrow" />
       </div>
-      <div class="_navg" @tap="cadress">
-        <div>cadress</div>
-        <img src="../image/箭头.png" alt class="arrow" />
-      </div>
       <div class="_navg" @tap="advise">
         <div>意见反馈</div>
         <img src="../image/箭头.png" alt class="arrow" />
@@ -84,11 +80,6 @@ wepy.page({
     advise: function(event) {
       wx.navigateTo({
         url: '/pages/advise'
-      });
-    },
-    cadress: function(event) {
-      wx.navigateTo({
-        url: '/pages/cadress'
       });
     },
     order: function(event) {

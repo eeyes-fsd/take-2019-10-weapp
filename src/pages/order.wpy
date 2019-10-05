@@ -1,12 +1,114 @@
-
+<style>
+  .container{
+    background-color:#f1f1f1;
+    justify-content: flex-start;
+  }
+  /*页面返回头*/
+  .back{
+    display: flex;
+    flex-direction:row;
+    height:40px;
+    width:95%;
+    margin-top:30px;
+    margin-bottom:5px;
+    border-radius:10px;
+    background-color:rgb(255, 87, 0);
+  }
+  .back-icon{
+    padding:10px;
+    height:20px;
+    width:5%;
+  }
+  .back-text{
+    height:40px;
+    width:90%;
+    font-size:18px;
+    text-align:center;
+    line-height:40px;
+    color:white;
+  }
+  /*订单容器*/
+  .orderbox{
+    display:flex;
+    flex-direction:column;
+    width:90%;
+    border-radius:10px 10px 5px 5px;
+    justify-content: center;
+    background-color:white;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.2);
+    margin-top:20px;
+  }
+  .order_head{
+    height:40px;
+    width:100%;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    background-color:rgb(255, 87, 0);
+    font-size:15px;
+    color:white;
+    text-align:center;
+    line-height:40px;
+  }
+  .order_detail{
+    height:120px;
+    width:100%;
+  }
+  .order_detail_sgl{
+    padding-left:10px;
+    height:40px;
+    width:100%;
+    font-size:12px;
+    line-height:40px;
+    text-align:left;
+    color:black;
+  }
+</style>
 <template>
   <div class="container">
-    历史订单
+    <div class="back">
+      <img src="../image/箭头.png" class="back-icon"  @click="navback"/>
+      <div class="back-text">我的订单</div>
+      <img class="back-icon" />
+    </div>
+    <div class="orderbox">
+      <div class="order_head">当前订单</div>
+      <div class="order_detail">
+        <div class="order_detail_sgl">下单时间:</div>
+        <div class="order_detail_sgl">商品：</div>
+        <div class="order_detail_sgl">配送人员：</div>
+      </div>
+    </div>
+    <div class="orderbox">
+      <div class="order_head">历史订单</div>
+      <div class="order_detail">
+        <div class="order_detail_sgl">下单时间:</div>
+        <div class="order_detail_sgl">商品：</div>
+        <div class="order_detail_sgl">配送人员：</div>
+      </div>
+    </div>
+    <div class="orderbox">
+      <div class="order_head">历史订单</div>
+      <div class="order_detail">
+        <div class="order_detail_sgl">下单时间:</div>
+        <div class="order_detail_sgl">商品：</div>
+        <div class="order_detail_sgl">配送人员：</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   import wepy from '@wepy/core';
   wepy.page({
+      methods:{
+          navback:function() {
+              wx.navigateBack()
+          },
+      }
   });
 </script>
+<config>
+  {
+  "navigationStyle": "custom"
+  }
+</config>
