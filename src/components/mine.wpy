@@ -1,22 +1,69 @@
 <style lang="less">
-._navg {
-  margin-top: 3px;
-  height: 40px;
-  width: 250px;
-  padding-left: 10px;
-  font-size: 17px;
-  line-height: 40px;
-  background-color: lightgrey;
-  border-radius: 3px;
+@msghight: 100rpx;
+.mine {
+  width: 100%;
+  padding-bottom: 70rpx;
+}
+.bg-img {
+  width: 100%;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: @msghight*5+2* @msghight*0.5;
+  width: 90%;
+  max-width: 900rpx;
+  margin: 0 auto;
+  border-radius: @msghight*0.5;
+  background-color: white;
+  ._navg {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: @msghight;
+    line-height: 40rpx;
+    padding-left: 30rpx;
+    font-size: 30rpx;
+    border-top: 2rpx solid rgb(178,178,178);
+    background-color: white;
+    .arrow {
+      width: @msghight*0.2;
+      height: @msghight*0.4;
+      padding-right: 30rpx;
+    }
+  }
+  ._navg:last-child {
+    border-bottom: 2rpx solid rgb(178,178,178);
+  }
 }
 </style>
 <template>
-  <div>
-    <div class="_navg" @tap="adress">adress</div>
-    <div class="_navg" @tap="order">order</div>
-    <div class="_navg" @tap="cadress">cadress</div>
-    <div class="_navg" @tap="advise">advise</div>
-    <div class="_navg" @tap="aboutus">aboutus</div>
+  <div class="mine">
+    <img src="../image/背景弧形框.png" alt class="bg-img" />
+    <div class="info">
+      <div class="_navg" @tap="adress">
+        <div>我的收货地址</div>
+        <img src="../image/箭头.png" alt class="arrow" />
+      </div>
+      <div class="_navg" @tap="order">
+        <div>我的订单</div>
+        <img src="../image/箭头.png" alt class="arrow" />
+      </div>
+      <div class="_navg" @tap="cadress">
+        <div>cadress</div>
+        <img src="../image/箭头.png" alt class="arrow" />
+      </div>
+      <div class="_navg" @tap="advise">
+        <div>意见反馈</div>
+        <img src="../image/箭头.png" alt class="arrow" />
+      </div>
+      <div class="_navg" @tap="aboutus">
+        <div>关于我们</div>
+        <img src="../image/箭头.png" alt class="arrow" />
+      </div>
+    </div>
   </div>
 </template>
 

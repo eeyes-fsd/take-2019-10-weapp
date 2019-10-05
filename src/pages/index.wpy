@@ -6,7 +6,9 @@
   justify-content: center;
   align-items: center;
 };
-
+.index-container{
+  width: 100%
+}
 //底部定位
 .buttom {
   position: fixed;
@@ -75,10 +77,10 @@ module.exports.getTime = getTime;
 </wxs>
 <template>
   <div class="container">
-    <div v-if="ismine">
+    <div v-if="ismine" class="index-container">
       <mine></mine>
     </div>
-    <div v-else>
+    <div v-else class="index-container">
       <purchase :lists="list"></purchase>
       <button @tap="showme">sss</button>
     </div>
@@ -123,7 +125,7 @@ wepy.page({
   },
   mixins: [testMixin],
   data: {
-    ismine: false,
+    ismine: true,
     list: [
       {
         name: '菠萝',
