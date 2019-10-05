@@ -15,6 +15,79 @@
 .index-container {
   width: 100%;
 }
+.searchbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: @white;
+  width: 618rpx;
+  height: 76rpx;
+  border-radius: 50rpx;
+  margin: 30rpx auto;
+  .glass {
+    width: 40rpx;
+    height: 40rpx;
+    margin: 0 20rpx 0 25rpx;
+  }
+  .inputbox {
+    width: 500rpx;
+    height: 40rpx;
+  }
+}
+
+//商品容器
+.list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding-bottom: 250rpx;
+}
+//商品
+.items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 227rpx;
+  width: 718rpx;
+  border-radius: 20rpx;
+  margin: 16rpx 0;
+  background-color: @white;
+  .item-image {
+    width: 183rpx;
+    height: 183rpx;
+    background-color: @bgc;
+    margin: 0 30rpx;
+  }
+  .selection > view {
+    display: flex;
+    align-items: center;
+    height: 183rpx;
+    width: 200rpx;
+    .button {
+      text-align: center;
+      line-height: 36rpx; //垂直居中
+      width: 40rpx;
+      height: 40rpx;
+      border-radius: 17rpx;
+      padding: 0; //去除wx默认样式，实现水平居中
+      color: @white;
+      background-color: @button;
+    }
+    .order-button {
+      line-height: 55rpx;
+      width: 110rpx;
+      height: 55rpx;
+      border-radius: 25rpx;
+      padding: 0;
+      font-size: 30rpx;
+      color: @white;
+      background-color: @button;
+    }
+  }
+}
 //底部定位
 .buttom {
   position: fixed;
@@ -152,7 +225,28 @@ module.exports.getTime = getTime;
       <mine></mine>
     </div>
     <div v-else class="index-container">
-      <purchase :lists="list"></purchase>
+      <div class="pauchase">
+        <div class="searchbox">
+          <image src="../image/放大镜.png" alt class="glass" />
+          <input type="text" class="inputbox" v-model="inputs" />
+        </div>
+        <div class="list-container">
+          <div v-for="item in search" :key="item.id" class="items">
+            <img class="item-image" />
+            <div>{{item.name}}</div>
+            <div class="selection">
+              <div v-if="item.quantity">
+                <button class="button" @tap="plus(item.id)">+</button>
+                <div>{{item.quantity}}</div>
+                <button class="button" @tap="reduce(item.id)">-</button>
+              </div>
+              <div v-else>
+                <button class="order-button" @tap="plus(item.id)">下单</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- 覆盖黑色 -->
     <div v-show="cartshow && !ismine" class="mask" catchtouchmove="myCatchTouch"></div>
@@ -204,63 +298,28 @@ wepy.page({
   config: {
     navigationBarTitleText: 'test'
   },
-  hooks: {
-    // Page 级别 hook, 只对当前 Page 的 setData 生效。
-    // 'before-setData': function(dirty) {
-    //   if (Math.random() < 0.2) {
-    //     console.log('setData canceled');
-    //     return false; // Cancel setData
-    //   }
-    //   dirty.time = +new Date();
-    //   return dirty;
-    // }
-  },
   mixins: [testMixin],
   data: {
     ismine: false,
     cartshow: false,
-    list: [
-      {
-        name: '菠萝',
-        id: '123',
-        quantity: 0
-      },
-      {
-        name: '苹果',
-        id: '12345',
-        quantity: 0
-      },
-      {
-        name: '里头',
-        id: '1245',
-        quantity: 0
-      },
-      {
-        name: '桃子',
-        id: '2345',
-        quantity: 0
-      },
-      {
-        name: 'peach',
-        id: '23452',
-        quantity: 0
-      },
-      {
-        name: 'liulian',
-        id: '23945',
-        quantity: 0
-      }
-    ]
+    inputs: ''
   },
   computed: {
-    ...mapState(['counter']),
+    ...mapState(['goodslist']),
     cartlist() {
-      return this.list.filter(x => {
+      return store.state.goodslist.filter(x => {
         return x.quantity !== 0;
       });
     },
+    search: function(reg) {
+      console.log(this);
+      var re = new RegExp(this.inputs);
+      return store.state.goodslist.filter(x => {
+        return re.test(x.name);
+      });
+    },
     isempty() {
-      for (let item of this.list) {
+      for (let item of store.state.goodslist) {
         if (item.quantity !== 0) {
           return false;
         }
@@ -275,16 +334,10 @@ wepy.page({
       });
     },
     plus: function(key) {
-      var list = this.list;
-      list.filter(x => {
-        return x.id === key;
-      })[0].quantity += 1; //曲线救国
+      store.commit('increment', key);
     },
     reduce: function(key) {
-      var list = this.list;
-      list.filter(x => {
-        return x.id === key;
-      })[0].quantity -= 1; //曲线救国
+      store.commit('decrement', key);
     },
     myCatchTouch: function() {
       console.log('stop user scroll it!');

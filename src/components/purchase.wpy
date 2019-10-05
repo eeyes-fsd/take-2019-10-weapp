@@ -77,14 +77,15 @@
   }
 }
 </style>
+
 <template>
   <div class="pauchase">
     <div class="searchbox">
       <image src="../image/放大镜.png" alt class="glass" />
-      <input type="text" class="inputbox" />
+      <input type="text" class="inputbox" v-model="inputs" />
     </div>
     <div class="list-container">
-      <div v-for="(item,id) in lists" :key="id" class="items">
+      <div v-for="(item,id) in search" :key="id" class="items">
         <img class="item-image" />
         <div>{{item.name}}</div>
         <div class="selection">
@@ -103,24 +104,34 @@
 </template>
 <script>
 import wepy from '@wepy/core';
+import { mapState } from '@wepy/x';
+import store from '../store';
 
 wepy.component({
-  props: {
-    lists: Array
+  store,
+  data() {
+    return {
+      inputs: '',
+      list: store.state.goodslist
+    };
   },
-  data: {},
+  computed: {
+    ...mapState(['goodslist']),
+    search: function(reg) {
+      console.log(this);
+      var re = new RegExp(this.inputs);
+      return this.list.filter(x => {
+        return re.test(x.name);
+      });
+    }
+  },
   methods: {
     plus: function(key) {
-      var list = this.$parent.list;
-      list.filter(x => {
-        return x.id === key;
-      })[0].quantity += 1; //曲线救国
+      store.commit('increment', key);
+      console.log(this)
     },
     reduce: function(key) {
-      var list = this.$parent.list;
-      list.filter(x => {
-        return x.id === key;
-      })[0].quantity -= 1; //曲线救国
+      store.commit('decrement', key);
     }
   }
 });
