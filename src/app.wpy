@@ -67,7 +67,8 @@ wepy.app({
       'pages/pay',
       'pages/advise',
       'pages/aboutus',
-      'pages/paysuccess'
+      'pages/paysuccess',
+      'pages/login'
     ],
     window: {
       backgroundTextStyle: 'light',

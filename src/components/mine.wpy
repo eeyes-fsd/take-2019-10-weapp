@@ -2,7 +2,7 @@
 @msghight: 100rpx;
 .mine {
   width: 100%;
-  padding-bottom: 70rpx;
+  padding-bottom: 150rpx;
 }
 .bg-img {
   width: 100%;

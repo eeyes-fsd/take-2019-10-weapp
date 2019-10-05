@@ -26,22 +26,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
-  background-color: rgb(255, 255, 255);
-  font-size: 13px;
+  height: 116rpx;
+  background-color: @white;
+  font-size: 24rpx;
   .cart-img {
-    height: 30px;
-    width: 30px;
-    margin-left: 20px;
+    height: 50rpx;
+    width: 50rpx;
+    margin-left: 32rpx;
   }
   .cart-button {
     @center();
     flex-direction: column;
-    height: 39px;
-    width: 66px;
+    height: 79rpx;
+    width: 146rpx;
     color: @white;
-    margin-right: 20px;
-    border-radius: 50px;
+    margin-right: 40rpx;
+    border-radius: 50rpx;
     background-color: rgb(255, 82, 0);
   }
 }
@@ -51,9 +51,9 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 50px;
+  height: 100rpx;
   color: @white;
-  font-size: 20px;
+  font-size: 48rpx;
   .tab {
     @center();
     width: 50%;
@@ -82,7 +82,6 @@ module.exports.getTime = getTime;
     </div>
     <div v-else class="index-container">
       <purchase :lists="list"></purchase>
-      <button @tap="showme">sss</button>
     </div>
     <div class="buttom">
       <div class="shopping-cart" v-show="!ismine">
@@ -135,12 +134,12 @@ wepy.page({
       {
         name: '苹果',
         id: '12345',
-        quantity: 1
+        quantity: 0
       },
       {
         name: '里头',
         id: '1245',
-        quantity: 1
+        quantity: 0
       },
       {
         name: '桃子',
