@@ -151,11 +151,11 @@ module.exports.getTime = getTime;
     <div v-if="ismine" class="index-container">
       <mine></mine>
     </div>
-    <div v-else class="index-container" :class="{'preventTouchMove':cartshow}">
+    <div v-else class="index-container">
       <purchase :lists="list"></purchase>
     </div>
     <!-- 覆盖黑色 -->
-    <div v-show="cartshow && !ismine" class="mask"></div>
+    <div v-show="cartshow && !ismine" class="mask" catchtouchmove="myCatchTouch"></div>
     <!-- 底部固定栏开始 -->
     <div class="buttom">
       <div class="cart-part" v-show="!ismine">
@@ -259,13 +259,13 @@ wepy.page({
         return x.quantity !== 0;
       });
     },
-    isempty(){
-      for(let item of this.list){
-        if (item.quantity!==0) {
-          return false
+    isempty() {
+      for (let item of this.list) {
+        if (item.quantity !== 0) {
+          return false;
         }
       }
-      return true
+      return true;
     }
   },
   methods: {
@@ -285,6 +285,10 @@ wepy.page({
       list.filter(x => {
         return x.id === key;
       })[0].quantity -= 1; //曲线救国
+    },
+    myCatchTouch: function() {
+      console.log('stop user scroll it!');
+      return;
     }
   },
   created() {}
