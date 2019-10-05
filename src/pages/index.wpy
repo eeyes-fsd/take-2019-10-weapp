@@ -153,7 +153,7 @@ module.exports.getTime = getTime;
       <mine></mine>
     </div>
     <div v-else class="index-container">
-      <purchase/>
+      <purchase />
     </div>
     <!-- 覆盖黑色 -->
     <div v-show="cartshow && !ismine" class="mask" catchtouchmove="myCatchTouch"></div>
@@ -207,7 +207,7 @@ wepy.page({
   },
   mixins: [testMixin],
   data: {
-    ismine: false,
+    ismine: true,
     cartshow: false,
     inputs: ''
   },

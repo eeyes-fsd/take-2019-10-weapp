@@ -1,5 +1,5 @@
 <style lang="less">
-page{
+page {
   height: 100%;
   background-color: rgb(242, 242, 242);
 }
@@ -30,7 +30,22 @@ wepy.app({
     // }
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    address: [{
+      id:0,
+      name:"许志轩",
+      college:"文治书院",
+      door:"西十九-909",
+      tele:"12321442134",
+      remark:""
+    },{
+      id:1,
+      name:"xzx",
+      college:"书院",
+      door:"西十九-909",
+      tele:"12321442134",
+      remark:""
+    }]
   },
 
   onLaunch() {

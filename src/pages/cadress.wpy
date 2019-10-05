@@ -1,142 +1,142 @@
 <style>
-  .container{
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-start;
-  }
-  /*页面返回头*/
-  .back{
-    display: flex;
-    flex-direction:row;
-    height:40px;
-    width:95%;
-    margin-top:30px;
-    margin-bottom:5px;
-    border-radius:10px;
-    background-color:rgb(255, 87, 0);
-  }
-  .back-icon{
-    padding:10px;
-    height:20px;
-    width:5%;
-  }
-  .back-text{
-    height:40px;
-    width:90%;
-    font-size:18px;
-    text-align:center;
-    line-height:40px;
-    color:white;
-  }
-  /*整个地址的容器*/
-  .adressbox{
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-start;
-    align-items: center;
-    width:100%;
-  }
-  /*地址简略信息容器，有微调，与adress中的不同*/
-  .adressinfo{
-    display:flex;
-    flex-direction:row;
-    height:40px;
-    width:90%;
-    margin-top:10px;
-    background-color:white;
-    border-radius:5px;
-    box-shadow: 0px 0px 12px rgba(0,0,0,.2);
-  }
-  .adressinfo_text{
-    height:40px;
-    width:85%;
-    padding-left:10px;
-    font-size:13px;
-    color:black;
-    line-height:40px;
-    text-align:left;
-  }
-  .adressinfo_ciconbox{
-    height:40px;
-    width:15%;
-    padding-top:10px;
-    padding-bottom:10px;
-    padding-left:20px;
-  }
-  .adressinfo_cicon{
-    height:20px;
-    width:19px;
-  }
-  /*地址详情容器*/
-  .adressdetail{
-    margin-top:20px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height:200px;
-    width:85%;
-    margin-bottom:20px;
-    border-top-left-radius:10px;
-    border-top-right-radius:10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.2);
-  }
-  .detail_name{
-    height:40px;
-    width:100%;
-    background-color:rgb(255, 87, 0);
-    border-top-left-radius:10px;
-    border-top-right-radius:10px;
-    font-size:18px;
-    color:white;
-    text-align:center;
-    line-height:40px;
-  }
-  .detail_info{
-    height:160px;
-    width:100%;
-    background-color:white;
-    border-bottom-left-radius:3px;
-    border-bottom-right-radius:3px;
-  }
-  .detail_info_sgl{
-    display:flex;
-    flex-direction:row;
-    height:32px;
-    width:100%;
-  }
-  .detail_info_text{
-    width:30%;
-    height:32px;
-    font-size:13px;
-    text-align:left;
-    line-height:32px;
-    padding-left:8px;
-  }
-  .detail_info_input{
-    width:70%;
-    height:32px;
-    font-size:13px;
-    text-align:left;
-    line-height:32px;
-  }
-  /*保存按钮*/
-  .save{
-    margin-top:30px;
-    height:50px;
-    width:50%;
-    border-radius:20px;
-    background-color:rgb(255, 87, 0);
-    font-size:25px;
-    color:white;
-    text-align:center;
-    line-height:50px;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+/*页面返回头*/
+.back {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  width: 95%;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  background-color: rgb(255, 87, 0);
+}
+.back-icon {
+  padding: 10px;
+  height: 20px;
+  width: 5%;
+}
+.back-text {
+  height: 40px;
+  width: 90%;
+  font-size: 18px;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+}
+/*整个地址的容器*/
+.adressbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+/*地址简略信息容器，有微调，与adress中的不同*/
+.adressinfo {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  width: 90%;
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+}
+.adressinfo_text {
+  height: 40px;
+  width: 85%;
+  padding-left: 10px;
+  font-size: 13px;
+  color: black;
+  line-height: 40px;
+  text-align: left;
+}
+.adressinfo_ciconbox {
+  height: 40px;
+  width: 15%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+.adressinfo_cicon {
+  height: 20px;
+  width: 19px;
+}
+/*地址详情容器*/
+.adressdetail {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 200px;
+  width: 85%;
+  margin-bottom: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+.detail_name {
+  height: 40px;
+  width: 100%;
+  background-color: rgb(255, 87, 0);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+}
+.detail_info {
+  height: 160px;
+  width: 100%;
+  background-color: white;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.detail_info_sgl {
+  display: flex;
+  flex-direction: row;
+  height: 32px;
+  width: 100%;
+}
+.detail_info_text {
+  width: 30%;
+  height: 32px;
+  font-size: 13px;
+  text-align: left;
+  line-height: 32px;
+  padding-left: 8px;
+}
+.detail_info_input {
+  width: 70%;
+  height: 32px;
+  font-size: 13px;
+  text-align: left;
+  line-height: 32px;
+}
+/*保存按钮*/
+.save {
+  margin-top: 30px;
+  height: 50px;
+  width: 50%;
+  border-radius: 20px;
+  background-color: rgb(255, 87, 0);
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+}
 </style>
 <template>
   <div class="container">
     <div class="back">
-      <img src="../image/箭头.png" class="back-icon"  @click="navback"/>
+      <img src="../image/箭头.png" class="back-icon" @click="navback" />
       <div class="back-text">修改地址</div>
       <img class="back-icon" />
     </div>
@@ -144,7 +144,7 @@
       <div class="adressinfo">
         <div class="adressinfo_text">彭康书院-东二十-101</div>
         <div class="adressinfo_ciconbox">
-          <img class="adressinfo_cicon"/>
+          <img class="adressinfo_cicon" />
         </div>
       </div>
       <div class="adressdetail">
@@ -152,23 +152,23 @@
         <div class="detail_info">
           <div class="detail_info_sgl">
             <div class="detail_info_text">收货人：</div>
-            <input class="detail_info_input" placeholder="许志轩"/>
+            <input class="detail_info_input" placeholder="许志轩" />
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">书院：</div>
-            <input class="detail_info_input" placeholder="文治书院"/>
+            <input class="detail_info_input" placeholder="文治书院" />
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">门牌号：</div>
-            <input class="detail_info_input" placeholder="西十九-909"/>
+            <input class="detail_info_input" placeholder="西十九-909" />
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">联系电话：</div>
-            <input class="detail_info_input" placeholder="12321442134"/>
+            <input class="detail_info_input" placeholder="12321442134" />
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">备注：</div>
-            <input class="detail_info_input" placeholder="无"/>
+            <input class="detail_info_input" placeholder="无" />
           </div>
         </div>
       </div>
@@ -177,7 +177,7 @@
       <div class="adressinfo">
         <div class="adressinfo_text">新地址</div>
         <div class="adressinfo_ciconbox">
-          <img class="adressinfo_cicon"/>
+          <img class="adressinfo_cicon" />
         </div>
       </div>
       <div class="adressdetail">
@@ -185,23 +185,23 @@
         <div class="detail_info">
           <div class="detail_info_sgl">
             <div class="detail_info_text">收货人：</div>
-            <input class="detail_info_input"/>
+            <input class="detail_info_input" />
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">书院：</div>
-            <input class="detail_info_input"/>
+            <input class="detail_info_input" />
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">门牌号：</div>
-            <input class="detail_info_input"/>
+            <input class="detail_info_input" />
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">联系电话：</div>
-            <input class="detail_info_input"/>
+            <input class="detail_info_input" />
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">备注：</div>
-            <input class="detail_info_input"/>
+            <input class="detail_info_input" />
           </div>
         </div>
       </div>
@@ -211,25 +211,25 @@
 </template>
 
 <script>
-  import wepy from '@wepy/core';
-  wepy.page({
-      onLoad(options){
-          console.log("isadd=",options.isadd)
-          this.isadd=options.isadd;
-          console.log(this.isadd)
-      },
-      data:{
-          isadd:1
-      },
-      methods:{
-          save:function(){
-              wx.showToast()
-          },
-          navback:function(){
-              wx.navigateBack()
-          }
-      }
-  });
+import wepy from '@wepy/core';
+wepy.page({
+  onLoad(options) {
+    console.log('isadd=', options.isadd);
+    this.isadd = options.isadd;
+    console.log(this.isadd);
+  },
+  data: {
+    isadd: 1
+  },
+  methods: {
+    save: function() {
+      wx.showToast();
+    },
+    navback: function() {
+      wx.navigateBack();
+    }
+  }
+});
 </script>
 <config>
   {

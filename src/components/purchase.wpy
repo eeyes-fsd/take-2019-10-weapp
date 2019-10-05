@@ -120,7 +120,7 @@ wepy.component({
     search() {
       var re = new RegExp(this.inputs);
       return store.state.goodslist.filter(x => {
-        x.quantity > -1;
+        x.quantity > -1;//强制刷新数据
         return re.test(x.name);
       });
     }

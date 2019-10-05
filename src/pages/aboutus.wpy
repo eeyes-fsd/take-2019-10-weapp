@@ -1,69 +1,66 @@
 <style>
-
-  .back{
-    display: flex;
-    flex-direction:row;
-    height:40px;
-    width:95%;
-    margin-top:30px;
-    margin-bottom:5px;
-    border-radius:10px;
-    background-color:rgb(255, 87, 0);
-  }
-  .back-icon{
-    padding:10px;
-    height:20px;
-    width:5%;
-  }
-  .back-text{
-    height:40px;
-    width:90%;
-    font-size:18px;
-    text-align:center;
-    line-height:40px;
-    color:white;
-  }
-  .container{
-    justify-content:start;
-    background-color:#f1f1f1;
-  }
-  .text{
-    width:85%;
-    height:300px;
-    margin-top:10px;
-    background-color:white;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.2);
-    border-radius:2px;
-    padding:10px;
-    font-size:15px;
-    line-height:22px;
-    word-wrap:break-word;
-    word-break:break-all;
-    color:grey;
-  }
+.back {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  width: 95%;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  background-color: rgb(255, 87, 0);
+}
+.back-icon {
+  padding: 10px;
+  height: 20px;
+  width: 5%;
+}
+.back-text {
+  height: 40px;
+  width: 90%;
+  font-size: 18px;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+}
+.container {
+  justify-content: start;
+  background-color: #f1f1f1;
+}
+.text {
+  width: 85%;
+  height: 300px;
+  margin-top: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  padding: 10px;
+  font-size: 15px;
+  line-height: 22px;
+  word-wrap: break-word;
+  word-break: break-all;
+  color: grey;
+}
 </style>
 <template>
   <div class="container">
     <div class="back">
-      <img src="../image/箭头.png" class="back-icon"  @click="navback"/>
+      <img src="../image/箭头.png" class="back-icon" @click="navback" />
       <div class="back-text">关于我们</div>
       <img class="back-icon" />
     </div>
-    <div class="text">
-      欢迎加入e瞳网！！！！！！欢迎欢迎欢迎欢迎欢迎欢迎欢迎欢迎
-    </div>
+    <div class="text">欢迎加入e瞳网！！！！！！欢迎欢迎欢迎欢迎欢迎欢迎欢迎欢迎</div>
   </div>
 </template>
 
 <script>
-  import wepy from '@wepy/core';
-  wepy.page({
-    methods:{
-      navback:function(){
-        wx.navigateBack()
-      }
+import wepy from '@wepy/core';
+wepy.page({
+  methods: {
+    navback: function() {
+      wx.navigateBack();
     }
-  });
+  }
+});
 </script>
 <config>
   {
