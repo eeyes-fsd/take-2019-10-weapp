@@ -1,0 +1,51 @@
+<style lang="less">
+.header {
+  margin: 90rpx 0 90rpx 50rpx;
+  text-align: center;
+  width: 650rpx;
+  height: 300rpx;
+  line-height: 450rpx;
+}
+.header image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 100rpx;
+}
+.content {
+  margin-left: 50rpx;
+  margin-bottom: 90rpx;
+}
+.content text {
+  display: block;
+  color: #9d9d9d;
+  margin-top: 40rpx;
+}
+.bottom {
+  border-radius: 80rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+}
+</style>
+<template>
+  <div>
+    <div v-if="canIUse">
+      <div class="header">
+        <img src="/images/logo.jpg" />
+      </div>
+      <div class="content">
+        <div>申请获取以下权限</div>
+        <text>获得你的公开信息(昵称，头像等)</text>
+      </div>
+      <button
+        class="bottom"
+        type="primary"
+        open-type="getUserInfo"
+        lang="zh_CN"
+        bindgetuserinfo="bindGetUserInfo"
+      >授权登录</button>
+    </div>
+    <div v-else>请升级微信版本</div>
+  </div>
+</template>
+
+
