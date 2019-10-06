@@ -150,14 +150,16 @@ wepy.page({
         reject(e);
       }
     });
-    getdata.then(value => {
-      this.addresslist = value;
-      this.currentid = value.map(() => {
-        return false; //初始化
-      }).catch(e){
-        console.log(e)
-      }
-    });
+    getdata
+      .then(value => {
+        this.addresslist = value;
+        this.currentid = value.map(() => {
+          return false; //初始化
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
   },
   computed: {
     // address() {
