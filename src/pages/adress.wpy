@@ -112,7 +112,7 @@
       <img class="back-icon" />
     </div>
     <div class="addressbox">
-      <div v-for="item in address" :key="item.id" class="addressinfo">
+      <div v-for="item in addresslist" :key="item.id" class="addressinfo">
         <div class="address-title" @tap="showdetail(item.id)">
           <div class="addressinfo_text">{{item.college}}-{{item.door}}</div>
           <img src="../image/编辑按钮.png" class="addressinfo_cicon" @tap.stop="edit" />
@@ -137,22 +137,37 @@
 import wepy from '@wepy/core';
 wepy.page({
   data: {
-    currentid: []
+    currentid: [],
+    addresslist: []
   },
+  beforeCreate() {},
   created() {
-    this.currentid = this.$app.$options.globalData.address.map(() => {
-      return false;//初始化
+    var getdata = new Promise((resolve, reject) => {
+      try {
+        var value = wx.getStorageSync('address');
+        resolve(value);
+      } catch (e) {
+        reject(e);
+      }
+    });
+    getdata.then(value => {
+      this.addresslist = value;
+      this.currentid = value.map(() => {
+        return false; //初始化
+      }).catch(e){
+        console.log(e)
+      };
     });
   },
   computed: {
-    address() {
-      return this.$app.$options.globalData.address;
-    }
+    // address() {
+    //   return this.$app.$options.globalData.address;
+    // }
   },
 
   methods: {
     plus: function() {
-      console.log(this.$app.$options.globalData);
+      // wx.removeStorage("address")
       wx.navigateTo({
         //isadd跳转到修改地址页面时判断是增加地址还是修改地址，默认值为修改地址
         url: '/pages/caddress?isadd=' + 1
@@ -168,9 +183,9 @@ wepy.page({
       });
     },
     showdetail: function(id) {
-      let temp=this.currentid.slice()//深拷贝
-      temp[id]=!temp[id]
-      this.currentid=temp
+      let temp = this.currentid.slice(); //深拷贝
+      temp[id] = !temp[id];
+      this.currentid = temp;
     }
   }
 });
