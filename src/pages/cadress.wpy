@@ -63,7 +63,7 @@
   padding-bottom: 10px;
   padding-left: 20px;
 }
-.adressinfo_cicon {
+.adressinfo_cicon{
   height: 20px;
   width: 19px;
 }
@@ -144,7 +144,7 @@
       <div class="adressinfo">
         <div class="adressinfo_text">彭康书院-东二十-101</div>
         <div class="adressinfo_ciconbox">
-          <img class="adressinfo_cicon" />
+          <img src="../image/编辑按钮.png" class="adressinfo_cicon" @tap="deleteadress"/>
         </div>
       </div>
       <div class="adressdetail">
@@ -152,23 +152,23 @@
         <div class="detail_info">
           <div class="detail_info_sgl">
             <div class="detail_info_text">收货人：</div>
-            <input class="detail_info_input" placeholder="许志轩" />
+            <input class="detail_info_input" placeholder="{{editadress.name}}" v-model="name"/>
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">书院：</div>
-            <input class="detail_info_input" placeholder="文治书院" />
+            <input class="detail_info_input" placeholder="{{editadress.college}}" v-model="college"/>
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">门牌号：</div>
-            <input class="detail_info_input" placeholder="西十九-909" />
+            <input class="detail_info_input" placeholder="{{editadress.door}}" v-model="door"/>
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">联系电话：</div>
-            <input class="detail_info_input" placeholder="12321442134" />
+            <input class="detail_info_input" placeholder="{{editadress.tele}}" v-model="tele"/>
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">备注：</div>
-            <input class="detail_info_input" placeholder="无" />
+            <input class="detail_info_input" placeholder="{{editadress.remark}}" v-model="remark"/>
           </div>
         </div>
       </div>
@@ -185,28 +185,29 @@
         <div class="detail_info">
           <div class="detail_info_sgl">
             <div class="detail_info_text">收货人：</div>
-            <input class="detail_info_input" />
+            <input class="detail_info_input" v-model="name"/>
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">书院：</div>
-            <input class="detail_info_input" />
+            <input class="detail_info_input" v-model="college"/>
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">门牌号：</div>
-            <input class="detail_info_input" />
+            <input class="detail_info_input" v-model="door"/>
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">联系电话：</div>
-            <input class="detail_info_input" />
+            <input class="detail_info_input" v-model="tele"/>
           </div>
           <div class="detail_info_sgl">
             <div class="detail_info_text">备注：</div>
-            <input class="detail_info_input" />
+            <input class="detail_info_input" v-model="remark"/>
           </div>
         </div>
       </div>
     </div>
-    <div class="save" @click="save">保存</div>
+    <div class="save" @click="edit" v-if="isadd==0">确认修改</div>
+    <div class="save" @click="save" v-if="isadd==1">保存</div>
   </div>
 </template>
 
@@ -214,20 +215,103 @@
 import wepy from '@wepy/core';
 wepy.page({
   onLoad(options) {
-    console.log('isadd=', options.isadd);
+    //根据页面传递入的参数判断是修改地址还是添加地址
     this.isadd = options.isadd;
-    console.log(this.isadd);
+
+    //如果是修改地址，则获取要修改地址的id并从缓存中取出所有的地址信息遍历求对应id
+    if(this.isadd==0){
+        this.adressid = options.adressid
+        this.adressfile = wx.getStorageSync("adress")
+        for(var j in this.adressfile){
+            if(this.adressfile[j].id==this.adressid){
+                this.editadress=this.adressfile[j]
+            }
+        }
+    }
+
+
   },
   data: {
-    isadd: 1
+    isadd: 1,
+    adress:[{
+      name:'',
+      college:'',
+      door:'',
+      tele:'',
+      remark:''
+    }],//提交新地址
+    editadress:[],//需要修改的地址
+    adressid:[],//需要修改的地址的id
+    adressfile:[],//所有地址信息
+    name:'',
+    college:'',
+    door:'',
+    tele:'',
+    remark:'',
   },
   methods: {
-    save: function() {
-      wx.showToast();
+      //修改地址
+    edit: function() {
+        if(this.name==''||this.college==''||this.door==''||this.tele==''||this.remark==''){
+            //如果输入值不符合规范要取消提交并提示,还未优化，只修改一个信息的时候也应该可以提交
+            wx.showToast()
+        }else{
+            this.editadress.name=this.name
+            this.editadress.college=this.college
+            this.editadress.door=this.door
+            this.editadress.tele=this.tele
+            this.editadress.remark=this.remark
+            for(var j in this.adressfile){
+                if(this.adressfile[j].id==this.adressid){
+                    this.adressfile[j]=this.editadress
+                }
+            }
+            wx.setStorageSync("adress",this.adressfile)
+            console.log("修改成功!")
+        }
+    },
+
+      //新建地址
+    save:function(){
+        if(this.name==''||this.college==''||this.door==''||this.tele==''||this.remark==''){
+            //如果输入值不符合规范要取消提交并提示
+            wx.showToast()
+        }else{
+            var adressnum=wx.getStorageSync("adressnum")
+            if(adressnum=='') {adressnum=1;wx.setStorageSync("adressnum",adressnum)}
+            else {adressnum=adressnum+1;wx.setStorageSync("adressnum",adressnum)}
+            this.adress[0].id=adressnum
+            this.adress[0].name=this.name
+            this.adress[0].college=this.college
+            this.adress[0].door=this.door
+            this.adress[0].tele=this.tele
+            this.adress[0].remark=this.remark
+            var data =wx.getStorageSync("adress");
+            console.log(data)
+            if(data=='') data=this.adress
+            else data.push(this.adress[0])
+            console.log(data)
+            wx.setStorage({
+                key:"adress",
+                data:data
+            })
+        }
+    },
+
+      //删除地址
+    deleteadress:function(){
+        for(var j in this.adressfile){
+            if(this.adressfile[j].id==this.adressid){
+                this.adressfile.splice(j,1)
+                wx.setStorageSync("adress",this.adressfile)
+            }
+        }
+        console.log("删除成功!")
+        wx.navigateBack();
     },
     navback: function() {
-      wx.navigateBack();
-    }
+        wx.navigateBack();
+    },
   }
 });
 </script>

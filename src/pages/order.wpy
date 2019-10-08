@@ -100,6 +100,19 @@
 <script>
 import wepy from '@wepy/core';
 wepy.page({
+  data:{
+      currentorder:[],
+      historyorder:[],
+  },
+  computed:{
+      //暂时先用缓存代替，之后再改成网络请求
+    currentorder(){
+        return wx.getStorageSync("currentorder")
+    },
+    historyorder(){
+        return wx.getStorageSync("historyorder")
+    }
+  },
   methods: {
     navback: function() {
       wx.navigateBack();
