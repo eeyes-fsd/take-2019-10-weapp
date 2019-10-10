@@ -28,17 +28,17 @@
   color: white;
 }
 /*整个地址的容器*/
-.adressbox {
+.addressbox {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  .adressinfo {
+  .addressinfo {
     width: 718rpx;
 
     /*地址简略信息容器*/
-    .adress-title {
+    .address-title {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -49,14 +49,14 @@
       background-color: white;
       border-radius: 20rpx;
       box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
-      .adressinfo_text {
+      .addressinfo_text {
         display:flex;
         flex-display: row;
         font-size: 33rpx;
         margin-left: 30rpx;
         color: black;
       }
-      .adressinfo_cicon {
+      .addressinfo_cicon {
         height: 40rpx;
         width: 40rpx;
         margin-right: 30rpx;
@@ -65,7 +65,7 @@
   }
 }
 /*地址详情容器*/
-.adressdetail {
+.addressdetail {
   margin: 20px 0;
   border-radius: 40rpx;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -114,13 +114,13 @@
       <div class="back-text">我的地址</div>
       <img class="back-icon" />
     </div>
-    <div class="adressbox">
-      <div v-for="item in adresslist" :key="item.id" class="adressinfo">
-        <div class="adress-title" @tap="showdetail(item.id)">
-          <div class="adressinfo_text"><div v-if="item.id==precompileid">默认</div>{{item.college}}-{{item.door}}</div>
-          <img src="../image/编辑按钮.png" class="adressinfo_cicon" @tap.stop="edit(item.id)" />
+    <div class="addressbox">
+      <div v-for="item in addresslist" :key="item.id" class="addressinfo">
+        <div class="address-title" @tap="showdetail(item.id)">
+          <div class="addressinfo_text"><div v-if="item.id==precompileid">(默认)</div>{{item.college}}-{{item.door}}</div>
+          <img src="../image/编辑按钮.png" class="addressinfo_cicon" @tap.stop="edit(item.id)" />
         </div>
-        <div class="adressdetail" v-if="currentid[item.id]">
+        <div class="addressdetail" v-if="currentid[item.id]">
           <div class="detail_name">地址 {{index+1}}</div>
           <div class="detail_info">
             <div class="detail_info_sgl">收货人： {{item.name}}</div>
@@ -142,18 +142,20 @@ wepy.page({
   data: {
     currentid: [],
     precompileid:[],
-    adresslist: [],//渲染
+    addresslist: [],//渲染
     num:[1,2],
   },
     //页面一旦显示执行的代码
   onShow(){
-      this.adresslist=wx.getStorageSync("adress")
+      this.addresslist=wx.getStorageSync("address")
+      this.precompileid = wx.getStorageSync("precompileid")
   },
   beforeCreate() {},
   created() {
+
     var getdata = new Promise((resolve, reject) => {
       try {
-        var value = wx.getStorageSync('adress');
+        var value = wx.getStorageSync('address');
         resolve(value);
       } catch (e) {
         reject(e);
@@ -161,8 +163,8 @@ wepy.page({
     });
     getdata
       .then(value => {
-        // this.adresslist = value;
-        // console.log(this.adresslist)
+        // this.addresslist = value;
+        // console.log(this.addresslist)
         this.currentid = value.map(() => {
           return false; //初始化
         });
@@ -176,18 +178,18 @@ wepy.page({
       precompileid(){
           return wx.getStorageSync("precompileid")
       }
-      // adresslist(){
-      //     return wx.getStorageSync("adress")
+      // addresslist(){
+      //     return wx.getStorageSync("address")
       // }
   },
 
   methods: {
     plus: function() {
-        // wx.removeStorage({key:"adress"})
-        // wx.setStorageSync("adressnum",0)
+        // wx.removeStorage({key:"address"})
+        // wx.setStorageSync("addressnum",0)
         wx.navigateTo({
             //isadd跳转到修改地址页面时判断是增加地址还是修改地址，默认值为修改地址
-            url: '/pages/cadress?isadd=' + 1
+            url: '/pages/caddress?isadd=' + 1
         });
     },
     navback: function() {
@@ -196,7 +198,7 @@ wepy.page({
     edit: function(id) {
       wx.navigateTo({
         //isadd跳转到修改地址页面时判断是增加地址还是修改地址，默认值为修改地址
-        url: '/pages/cadress?isadd=' + 0 + '&adressid=' + id
+        url: '/pages/caddress?isadd=' + 0 + '&addressid=' + id
       });
     },
     showdetail: function(id) {

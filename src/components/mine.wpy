@@ -70,7 +70,7 @@ wepy.page({
   methods: {
     adress: function(event) {
       wx.navigateTo({
-        url: '/pages/adress'
+        url: '/pages/address'
       });
     },
     aboutus: function(event) {
