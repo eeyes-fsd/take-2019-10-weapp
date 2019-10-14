@@ -1,27 +1,74 @@
-<style>
-  .paysuccess{
-    height:50px;
-    width:200px;
-    background-color:yellow;
+<style lang="less">
+.payment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .success-icon {
+    width: 99rpx;
+    height: 99rpx;
+    margin: 100rpx 0 50rpx 0;
   }
+  .sum {
+    width: 90%;
+    height: 100rpx;
+    max-width: 780rpx;
+    text-align: center;
+    line-height: 100rpx;
+    margin: 35rpx 0;
+    background-color: #fff;
+    border-radius: 30rpx;
+  }
+}
+
+/* 底部栏 */
+@tapheight: 100rpx;
+.bottomtap {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: @tapheight;
+  .cancel,
+  .pay-button {
+    display: inline-block;
+    line-height: @tapheight;
+    text-align: center;
+    width: 50%;
+    color: white;
+    font-size: 48rpx;
+  }
+  .cancel {
+    background-color: rgb(201, 205, 207);
+  }
+  .pay-button {
+    background-color: rgb(255, 87, 0);
+  }
+}
 </style>
 <template>
   <div class="container">
-    支付页面
-
-    <button class="paysuccess" v-on:click="paysuccess">支付</button>
+    <div class="payment">
+      <img src="../image/成功.png" alt="check" class="success-icon" />
+      <div>订单已经提交，待支付</div>
+      <div class="sum">￥</div>
+    </div>
+    <div class="bottomtap">
+      <div class="cancel">取消</div>
+      <div class="pay-button" @tap="paysuccess">立即支付</div>
+    </div>
   </div>
 </template>
 
 <script>
-  import wepy from '@wepy/core';
-  wepy.page({
-    methods: {
-      paysuccess: function (event) {
-        wx.navigateTo({
-          url: '/pages/paysuccess'
-        })
-      }
+import wepy from '@wepy/core';
+wepy.page({
+  methods: {
+    // 支付跳转
+    paysuccess: function(event) {
+      wx.navigateTo({
+        url: '/pages/paysuccess'
+      });
     }
-  })
+  }
+});
 </script>
