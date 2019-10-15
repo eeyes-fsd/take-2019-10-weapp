@@ -135,6 +135,19 @@
     background-color: rgb(255, 87, 0);
   }
 }
+
+.alert-box {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  .alert-main {
+    margin: 500rpx 50rpx;
+  }
+}
 </style>
 <wxs module="m1" lang="babel">
 const getTime = (time) => {
@@ -190,6 +203,28 @@ module.exports.getTime = getTime;
         <div class="mine tab" :class="{'tabSelected':ismine}" @click="ismine=true">我的</div>
       </nav>
     </div>
+    <!-- 授权弹窗 -->
+    <div class="alert-box" v-show="!hasUserInfo && canIUse">
+      <div class="alert-main">
+        <div v-if="canIUse">
+          <!-- <div class="header">
+          <img src="/images/logo.jpg" />
+          </div>-->
+          <div class="content">
+            <div>申请获取以下权限</div>
+            <text>获得你的公开信息(昵称，头像等)</text>
+          </div>
+          <button
+            class="bottom"
+            type="primary"
+            open-type="getUserInfo"
+            lang="zh_CN"
+            bindgetuserinfo="getUserInfo"
+          >授权登录</button>
+        </div>
+        <div v-else>请升级微信版本</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -209,7 +244,10 @@ wepy.page({
   data: {
     ismine: true,
     cartshow: false,
-    inputs: ''
+    inputs: '',
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   computed: {
     ...mapState(['goodslist']),
@@ -243,9 +281,43 @@ wepy.page({
     myCatchTouch: function() {
       console.log('stop user scroll it!');
       return;
+    },
+    getUserInfo: function(e) {
+      console.log(e.$wx.detail.userInfo);
+      this.$app.$options.globalData = e.$wx.detail.userInfo;
+      this.hasUserInfo=true
+      // this.setData({
+      //   userInfo: e.detail.userInfo,
+      //   hasUserInfo: true
+      // });
     }
   },
-  created() {}
+  created() {
+    console.log(this.$app.$options.globalData.userInfo);
+    if (this.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      this.$app.userInfoReadyCallback = res => {
+        console.log(res);
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        });
+      };
+    } else {
+      //   // 在没有 open-type=getUserInfo 版本的兼容处理
+      //   wx.getUserInfo({
+      //     success: res => {
+      //       app.globalData.userInfo = res.userInfo
+      //       this.setData({
+      //         userInfo: res.userInfo,
+      //         hasUserInfo: true
+      //       })
+      //     }
+      //   })
+    }
+    console.log(this);
+  }
 });
 </script>
 <config>

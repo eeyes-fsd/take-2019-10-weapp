@@ -2,6 +2,7 @@ import Vuex from '@wepy/x'
 
 export default new Vuex.Store({
   state: {
+    userinfo:{},
     counter: 0,
     goodslist: [
       {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
       state.goodslist.filter(x => {
         return x.id === key
       })[0].quantity--
+    },
+    setinfo(info) {
+      state.userinfo = info || {};
     }
   },
   actions: {

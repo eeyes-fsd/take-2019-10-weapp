@@ -50,10 +50,10 @@
     <div class="payment">
       <img src="../image/成功.png" alt="check" class="success-icon" />
       <div>订单已经提交，待支付</div>
-      <div class="sum">￥</div>
+      <div class="sum">￥{{ price }}</div>
     </div>
     <div class="bottomtap">
-      <div class="cancel">取消</div>
+      <div class="cancel" @tap="cancel">取消</div>
       <div class="pay-button" @tap="paysuccess">立即支付</div>
     </div>
   </div>
@@ -62,12 +62,17 @@
 <script>
 import wepy from '@wepy/core';
 wepy.page({
+  data: {
+    price: 0
+  },
   methods: {
     // 支付跳转
     paysuccess: function(event) {
       wx.navigateTo({
         url: '/pages/paysuccess'
       });
+    },
+    cancel: function() {
     }
   }
 });
