@@ -1,6 +1,6 @@
 <style lang="less">
 @msghight: 100rpx;
-@msgnum:4;//信息条数
+@msgnum: 4; //信息条数
 .mine {
   width: 100%;
   padding-bottom: 150rpx;
@@ -8,11 +8,15 @@
 .bg-img {
   width: 100%;
 }
+.head-sculpture{
+  width: 100rpx;
+  height: 100rpx;
+}
 .info {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: @msghight*@msgnum+2* @msghight*0.5;
+  height: @msghight* @msgnum+2* @msghight*0.5;
   width: 90%;
   max-width: 900rpx;
   margin: 0 auto;
@@ -27,7 +31,7 @@
     line-height: 40rpx;
     padding-left: 30rpx;
     font-size: 30rpx;
-    border-top: 2rpx solid rgb(178,178,178);
+    border-top: 2rpx solid rgb(178, 178, 178);
     background-color: white;
     .arrow {
       width: @msghight*0.2;
@@ -36,13 +40,15 @@
     }
   }
   ._navg:last-child {
-    border-bottom: 2rpx solid rgb(178,178,178);
+    border-bottom: 2rpx solid rgb(178, 178, 178);
   }
 }
 </style>
 <template>
   <div class="mine">
     <img src="../image/背景弧形框.png" alt class="bg-img" />
+    <img src="{{userInfo.avatarUrl}}" alt class="head-sculpture" />
+    <div>{{userInfo.nickName}}</div>
     <div class="info">
       <div class="_navg" @tap="adress">
         <div>我的收货地址</div>
@@ -66,7 +72,10 @@
 
 <script>
 import wepy from '@wepy/core';
-wepy.page({
+wepy.component({
+  data: {
+    userInfo: {}
+  },
   methods: {
     adress: function(event) {
       wx.navigateTo({
@@ -88,6 +97,9 @@ wepy.page({
         url: '/pages/order'
       });
     }
+  },
+  created() {
+    console.log(this);
   }
 });
 </script>

@@ -137,16 +137,24 @@
 }
 
 .alert-box {
+  @center();
   position: fixed;
-  z-index: 9999;
+  z-index: 99999;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   .alert-main {
-    margin: 500rpx 50rpx;
+    height: 300rpx;
+    border-radius: 30rpx;
     background-color: #fff;
+    .content {
+      margin: 50rpx 30rpx 0 50rpx;
+    }
+    button {
+      width: 500rpx;
+    }
   }
 }
 </style>
@@ -289,8 +297,8 @@ wepy.page({
         this.userInfo = e.$wx.detail.userInfo;
         this.hasUserInfo = true;
         console.log('授权成功');
-      }else{
-        console.log("授权失败")
+      } else {
+        console.log('授权失败');
       }
     }
   },
@@ -300,23 +308,22 @@ wepy.page({
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       this.$app.userInfoReadyCallback = res => {
-        console.log(res);
+        console.log('userInfoReadyCaallback回调', res);
         this.userInfo = res.userInfo;
         this.hasUserInfo = true;
+        this.$children[0].userInfo = res.userInfo;
       };
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo;
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          });
+          console.log('兼容回调', res);
+          this.$app.$options.globalData.userInfo = res.userInfo;
+          this.userInfo = res.userInfo;
+          this.hasUserInfo = true;
         }
       });
     }
-    console.log(this);
   }
 });
 </script>
