@@ -5,12 +5,29 @@
   width: 100%;
   padding-bottom: 150rpx;
 }
-.bg-img {
+.head-info {
   width: 100%;
-}
-.head-sculpture{
-  width: 100rpx;
-  height: 100rpx;
+  position: relative;
+  .bg-img {
+    width: 100%;
+    height: 400rpx;
+  }
+  .head-info-detail {
+    position: absolute;
+    top: 250rpx;
+    right: 0;
+    left: 0;
+    text-align: center;
+    .nickname{
+      font-size: 48rpx;
+      color: white
+    }
+    .head-sculpture {
+      width: 215rpx;
+      height: 215rpx;
+      border-radius: 50%;
+    }
+  }
 }
 .info {
   display: flex;
@@ -19,7 +36,7 @@
   height: @msghight* @msgnum+2* @msghight*0.5;
   width: 90%;
   max-width: 900rpx;
-  margin: 0 auto;
+  margin: 200rpx auto 0 auto;
   border-radius: @msghight*0.5;
   background-color: white;
   ._navg {
@@ -46,9 +63,13 @@
 </style>
 <template>
   <div class="mine">
-    <img src="../image/背景弧形框.png" alt class="bg-img" />
-    <img src="{{userInfo.avatarUrl}}" alt class="head-sculpture" />
-    <div>{{userInfo.nickName}}</div>
+    <div class="head-info">
+      <img src="../image/背景弧形框.png" alt class="bg-img" />
+      <div class="head-info-detail">
+        <div class="nickname">{{userInfo.nickName}}</div>
+        <img src="{{userInfo.avatarUrl}}" alt class="head-sculpture" />
+      </div>
+    </div>
     <div class="info">
       <div class="_navg" @tap="adress">
         <div>我的收货地址</div>
@@ -73,9 +94,7 @@
 <script>
 import wepy from '@wepy/core';
 wepy.component({
-  data: {
-    userInfo: {}
-  },
+  props: ['userInfo'],
   methods: {
     adress: function(event) {
       wx.navigateTo({

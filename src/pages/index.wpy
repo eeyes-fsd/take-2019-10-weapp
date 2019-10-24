@@ -172,7 +172,7 @@ module.exports.getTime = getTime;
 <template>
   <div class="container">
     <div v-if="ismine" class="index-container">
-      <mine></mine>
+      <mine :userInfo="userInfo"></mine>
     </div>
     <div v-else class="index-container">
       <purchase />
