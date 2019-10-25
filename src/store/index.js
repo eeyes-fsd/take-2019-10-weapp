@@ -2,7 +2,7 @@ import Vuex from '@wepy/x'
 
 export default new Vuex.Store({
   state: {
-    userinfo:{},
+    userinfo: {},
     counter: 0,
     goodslist: [
       {

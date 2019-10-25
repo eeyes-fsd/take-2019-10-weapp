@@ -275,6 +275,10 @@ wepy.page({
       return true;
     }
   },
+  async onLoad() {
+    await wepy.login();
+    this.userInfo = await wepy.getUserInfo();
+  },
   methods: {
     pay: function(event) {
       wx.navigateTo({
@@ -291,13 +295,31 @@ wepy.page({
       console.log('stop user scroll it!');
       return;
     },
-    getUserInfo: function(e) {
+    getUserInfo: async function(e) {
       if (e.$wx.detail.userInfo) {
         this.$app.$options.globalData = e.$wx.detail.userInfo;
         this.userInfo = e.$wx.detail.userInfo;
         this.hasUserInfo = true;
+        // var code = wepy.login();
+        await wx.login({
+          success: res => {
+            console.log(res);
+            code = res.code;
+          }
+        });
+        // console.log(code);
+        wx.showToast({
+          title: '授权成功',
+          icon: 'success',
+          duration: 2000
+        });
         console.log('授权成功');
       } else {
+        wx.showToast({
+          title: '授权失败',
+          icon: 'none',
+          duration: 2000
+        });
         console.log('授权失败');
       }
     }

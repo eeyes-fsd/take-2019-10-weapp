@@ -34,29 +34,44 @@ wepy.app({
   },
 
   async onLaunch() {
-    await wx.login({
-      success: res => {
-        console.log('wx code', res.code); //发送code到服务端
-      }
-    });
-    wx.getSetting({
-      success: res => {
-        console.log(res);
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: response => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.$options.globalData.userInfo = response.userInfo;
-              console.log('写入个人信息');
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(response);
-              }
-            }
-          });
-        }
-      }
-    });
+    // await wx.login({
+    //   success: res => {
+    //     console.log('wx code', res.code); //发送code到服务端
+    //     wx.request({
+    //       url: 'http://127.0.0.1:3000/api',
+    //       method: 'POST',
+    //       header: {
+    //         value: 'application/json',
+    //       },
+    //       data: { code: res.code },
+    //       success: function(response) {
+    //         wx.setStorage({
+    //           key: 'token',
+    //           data: response.data
+    //         });
+    //         console.log(response.data);
+    //       }
+    //     });
+    //   }
+    // });
+    // wx.getSetting({
+    //   success: res => {
+    //     console.log(res);
+    //     if (res.authSetting['scope.userInfo']) {
+    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+    //       wx.getUserInfo({
+    //         success: response => {
+    //           // 可以将 res 发送给后台解码出 unionId
+    //           this.$options.globalData.userInfo = response.userInfo;
+    //           console.log('写入个人信息');
+    //           if (this.userInfoReadyCallback) {
+    //             this.userInfoReadyCallback(response);
+    //           }
+    //         }
+    //       });
+    //     }
+    //   }
+    // });
     // this.testAsync();
     // eventHub.$on('app-launch', (...args) => {
     //   console.log('app-launch event emitted, the params are:');
@@ -75,7 +90,8 @@ wepy.app({
     async testAsync() {
       let d = await this.sleep(3);
       console.log(d);
-    }
+    },
+
   }
 });
 </script>
