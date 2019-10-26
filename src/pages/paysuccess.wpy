@@ -36,8 +36,8 @@ import wepy from '@wepy/core';
 wepy.page({
   methods: {
     navback() {
-      wx.redirectTo({
-        url: '/pages/index'
+      wx.navigateBack({
+        delta: 2 //返回指定页面
       });
     }
   }

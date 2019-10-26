@@ -18,9 +18,9 @@
     right: 0;
     left: 0;
     text-align: center;
-    .nickname{
+    .nickname {
       font-size: 48rpx;
-      color: white
+      color: white;
     }
     .head-sculpture {
       width: 215rpx;

@@ -21,6 +21,7 @@ const POST = (url, param = {}, token = "") => {
         })
     });
 }
+//刷新token
 const refreshToken = async () => {
     let response;
     await wepy.wx.getStorage('access_token')

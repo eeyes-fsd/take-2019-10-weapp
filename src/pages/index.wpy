@@ -233,9 +233,6 @@
     <div class="alert-box" v-show="!hasUserInfo">
       <div class="alert-main">
         <div v-if="canIUse">
-          <!-- <div class="header">
-          <img src="/images/logo.jpg" />
-          </div>-->
           <div class="content">
             <div>申请获取以下权限</div>
             <text>获得你的公开信息(昵称，头像等)</text>
@@ -260,7 +257,7 @@ import eventHub from '../common/eventHub';
 import { mapState } from '@wepy/x';
 import store from '../store';
 import testMixin from '../mixins/test';
-import api from '../utils/api.js';
+import auth from '../utils/auth.js';
 
 wepy.page({
   store,
@@ -316,8 +313,7 @@ wepy.page({
         this.$app.$options.globalData = e.$wx.detail.userInfo;
         this.userInfo = e.$wx.detail.userInfo;
         this.hasUserInfo = true;
-        var s = await api.getToken();
-        console.log('token', s);
+        await auth.login();
         wx.showToast({
           title: '授权成功',
           icon: 'success',
@@ -332,30 +328,38 @@ wepy.page({
       }
     }
   },
-  beforeCreate() {
-    console.log(this);
-    //   if (this.canIUse) {
-    //     console.log('index page created');
-    //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //     // 所以此处加入 callback 以防止这种情况
-    //     this.$app.userInfoReadyCallback = res => {
-    //       console.log('userInfoReadyCaallback回调', res);
+  async beforeCreate() {
+    console.log('before', this.hasUserInfo);
+  },
+  async onLoad() {
+    console.log('onload', this.hasUserInfo);
+  },
+  async created() {
+    console.log('created', this.hasUserInfo);
+    // if (this.canIUse) {
+    //   console.log('index page created');
+    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //   // 所以此处加入 callback 以防止这种情况
+    //   this.$app.userInfoReadyCallback = res => {
+    //     console.log('userInfoReadyCaallback回调', res);
+    //     this.userInfo = res.userInfo;
+    //     this.hasUserInfo = true;
+    //     this.$children[0].userInfo = res.userInfo;
+    //   };
+    // }
+    // else {
+    //   // 在没有 open-type=getUserInfo 版本的兼容处理
+    //   wx.getUserInfo({
+    //     success: res => {
+    //       console.log('兼容回调', res);
+    //       this.$app.$options.globalData.userInfo = res.userInfo;
     //       this.userInfo = res.userInfo;
     //       this.hasUserInfo = true;
-    //       this.$children[0].userInfo = res.userInfo;
-    //     };
-    //   } else {
-    //     // 在没有 open-type=getUserInfo 版本的兼容处理
-    //     wx.getUserInfo({
-    //       success: res => {
-    //         console.log('兼容回调', res);
-    //         this.$app.$options.globalData.userInfo = res.userInfo;
-    //         this.userInfo = res.userInfo;
-    //         this.hasUserInfo = true;
-    //       }
-    //     });
-    //   }
-  }
+    //     }
+    //   });
+    // }
+  },
+  onShow() {}
 });
 </script>
 <config>

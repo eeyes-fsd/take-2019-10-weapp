@@ -73,6 +73,7 @@ wepy.page({
       });
     },
     cancel: function() {
+      wx.navigateBack();
     }
   }
 });
