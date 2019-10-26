@@ -17,8 +17,11 @@ page {
 import wepy from '@wepy/core';
 import eventHub from './common/eventHub';
 import vuex from '@wepy/x';
+import promisify  from '@wepy/use-promisify';
 
 wepy.use(vuex);
+
+wepy.use(promisify);
 
 wepy.app({
   hooks: {
@@ -90,8 +93,7 @@ wepy.app({
     async testAsync() {
       let d = await this.sleep(3);
       console.log(d);
-    },
-
+    }
   }
 });
 </script>

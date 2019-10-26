@@ -2,16 +2,19 @@
 @white: #fff;
 @bgc: rgb(242, 242, 242);
 @button: rgb(255, 87, 0);
+
 @center: {
   display: flex;
   justify-content: center;
   align-items: center;
 };
+
 .container {
   justify-content: flex-start;
   width: 100%;
   background-color: @bgc;
 }
+
 .index-container {
   width: 100%;
 }
@@ -22,6 +25,7 @@
   bottom: 0;
   width: 100%;
 }
+
 //购物车
 .mask {
   position: fixed;
@@ -29,6 +33,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
 }
+
 .preventTouchMove {
   top: 0px;
   left: 0px;
@@ -48,6 +53,7 @@
   min-height: 435rpx;
   padding-top: 24rpx;
   overflow: auto;
+
   .item {
     display: flex;
     justify-content: space-between;
@@ -57,6 +63,7 @@
     border-radius: 20rpx;
     margin: 18rpx 0;
     background-color: @white;
+
     // 图片
     .item-image {
       width: 133rpx;
@@ -64,11 +71,13 @@
       background-color: @bgc;
       margin: 0 30rpx;
     }
+
     .selection > view {
       display: flex;
       align-items: center;
       height: 183rpx;
       width: 200rpx;
+
       .button {
         text-align: center;
         line-height: 36rpx; //垂直居中
@@ -79,6 +88,7 @@
         color: @white;
         background-color: @button;
       }
+
       .order-button {
         line-height: 55rpx;
         width: 110rpx;
@@ -101,11 +111,13 @@
   height: 116rpx;
   background-color: @white;
   font-size: 24rpx;
+
   .cart-img {
     height: 50rpx;
     width: 50rpx;
     margin-left: 32rpx;
   }
+
   .cart-button {
     @center();
     flex-direction: column;
@@ -126,11 +138,13 @@
   height: 100rpx;
   color: @white;
   font-size: 48rpx;
+
   .tab {
     @center();
     width: 50%;
     background-color: rgb(201, 205, 207);
   }
+
   .tabSelected {
     background-color: rgb(255, 87, 0);
   }
@@ -145,13 +159,16 @@
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.3);
+
   .alert-main {
     height: 300rpx;
     border-radius: 30rpx;
     background-color: #fff;
+
     .content {
       margin: 50rpx 30rpx 0 50rpx;
     }
+
     button {
       width: 500rpx;
     }
@@ -159,15 +176,15 @@
 }
 </style>
 <wxs module="m1" lang="babel">
-const getTime = (time) => {
+  const getTime = (time) => {
   let date = getDate(time);
   let hour = date.getHours();
   let mins = date.getMinutes();
   let sec = date.getSeconds();
   let milli = date.getMilliseconds();
   return `${hour}:${mins}:${sec}.${milli}`;
-}
-module.exports.getTime = getTime;
+  }
+  module.exports.getTime = getTime;
 </wxs>
 <template>
   <div class="container">
@@ -243,6 +260,7 @@ import eventHub from '../common/eventHub';
 import { mapState } from '@wepy/x';
 import store from '../store';
 import testMixin from '../mixins/test';
+import api from '../utils/api.js';
 
 wepy.page({
   store,
@@ -254,6 +272,7 @@ wepy.page({
     ismine: true,
     cartshow: false,
     inputs: '',
+    code: '',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -275,10 +294,6 @@ wepy.page({
       return true;
     }
   },
-  async onLoad() {
-    await wepy.login();
-    this.userInfo = await wepy.getUserInfo();
-  },
   methods: {
     pay: function(event) {
       wx.navigateTo({
@@ -297,55 +312,49 @@ wepy.page({
     },
     getUserInfo: async function(e) {
       if (e.$wx.detail.userInfo) {
+        console.log('授权成功');
         this.$app.$options.globalData = e.$wx.detail.userInfo;
         this.userInfo = e.$wx.detail.userInfo;
         this.hasUserInfo = true;
-        // var code = wepy.login();
-        await wx.login({
-          success: res => {
-            console.log(res);
-            code = res.code;
-          }
-        });
-        // console.log(code);
+        var s = await api.getToken();
+        console.log('token', s);
         wx.showToast({
           title: '授权成功',
           icon: 'success',
-          duration: 2000
+          duration: 1500
         });
-        console.log('授权成功');
       } else {
+        console.log('授权失败');
         wx.showToast({
           title: '授权失败',
-          icon: 'none',
           duration: 2000
         });
-        console.log('授权失败');
       }
     }
   },
-  created() {
-    if (this.canIUse) {
-      console.log('index page created');
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      this.$app.userInfoReadyCallback = res => {
-        console.log('userInfoReadyCaallback回调', res);
-        this.userInfo = res.userInfo;
-        this.hasUserInfo = true;
-        this.$children[0].userInfo = res.userInfo;
-      };
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          console.log('兼容回调', res);
-          this.$app.$options.globalData.userInfo = res.userInfo;
-          this.userInfo = res.userInfo;
-          this.hasUserInfo = true;
-        }
-      });
-    }
+  beforeCreate() {
+    console.log(this);
+    //   if (this.canIUse) {
+    //     console.log('index page created');
+    //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //     // 所以此处加入 callback 以防止这种情况
+    //     this.$app.userInfoReadyCallback = res => {
+    //       console.log('userInfoReadyCaallback回调', res);
+    //       this.userInfo = res.userInfo;
+    //       this.hasUserInfo = true;
+    //       this.$children[0].userInfo = res.userInfo;
+    //     };
+    //   } else {
+    //     // 在没有 open-type=getUserInfo 版本的兼容处理
+    //     wx.getUserInfo({
+    //       success: res => {
+    //         console.log('兼容回调', res);
+    //         this.$app.$options.globalData.userInfo = res.userInfo;
+    //         this.userInfo = res.userInfo;
+    //         this.hasUserInfo = true;
+    //       }
+    //     });
+    //   }
   }
 });
 </script>

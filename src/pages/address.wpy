@@ -1,111 +1,122 @@
 <style lang="less">
-.container {
-  background-color: #f1f1f1;
-  justify-content: flex-start;
-}
-/*页面返回头*/
-.back {
-  display: flex;
-  flex-direction: row;
-  height: 40px;
-  width: 95%;
-  margin-top: 30px;
-  margin-bottom: 5px;
-  border-radius: 10px;
-  background-color: rgb(255, 87, 0);
-}
-.back-icon {
-  padding: 10px;
-  height: 20px;
-  width: 5%;
-}
-.back-text {
-  height: 40px;
-  width: 90%;
-  font-size: 18px;
-  text-align: center;
-  line-height: 40px;
-  color: white;
-}
-/*整个地址的容器*/
-.addressbox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  .addressinfo {
-    width: 718rpx;
+  .container {
+    background-color: #f1f1f1;
+    justify-content: flex-start;
+  }
 
-    /*地址简略信息容器*/
-    .address-title {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      height: 105rpx;
-      width: 100%;
-      margin-top: 23rpx;
-      background-color: white;
-      border-radius: 20rpx;
-      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
-      .addressinfo_text {
-        display:flex;
-        flex-display: row;
-        font-size: 33rpx;
-        margin-left: 30rpx;
-        color: black;
-      }
-      .addressinfo_cicon {
-        height: 40rpx;
-        width: 40rpx;
-        margin-right: 30rpx;
+  /*页面返回头*/
+  .back {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    width: 95%;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    background-color: rgb(255, 87, 0);
+  }
+
+  .back-icon {
+    padding: 10px;
+    height: 20px;
+    width: 5%;
+  }
+
+  .back-text {
+    height: 40px;
+    width: 90%;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    color: white;
+  }
+
+  /*整个地址的容器*/
+  .addressbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .addressinfo {
+      width: 718rpx;
+
+      /*地址简略信息容器*/
+      .address-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 105rpx;
+        width: 100%;
+        margin-top: 23rpx;
+        background-color: white;
+        border-radius: 20rpx;
+        box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+
+        .addressinfo_text {
+          display: flex;
+          flex-display: row;
+          font-size: 33rpx;
+          margin-left: 30rpx;
+          color: black;
+        }
+
+        .addressinfo_cicon {
+          height: 40rpx;
+          width: 40rpx;
+          margin-right: 30rpx;
+        }
       }
     }
   }
-}
-/*地址详情容器*/
-.addressdetail {
-  margin: 20px 0;
-  border-radius: 40rpx;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  .detail_name {
-    height: 40px;
-    font-size: 15px;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 40rpx 40rpx 0 0;
-    color: white;
-    background-color: rgb(255, 87, 0);
-  }
-  .detail_info {
-    height: 160px;
-    width: 100%;
-    background-color: white;
-    border-radius: 0 0 30rpx 30rpx;
-  }
-  .detail_info_sgl {
-    height: 32px;
-    width: 100%;
-    font-size: 12px;
-    text-align: left;
-    line-height: 32px;
-    padding-left: 15px;
-  }
-}
 
-/*新建地址按钮*/
-.add {
-  height: 50px;
-  width: 50%;
-  background-color: rgb(255, 87, 0);
-  margin-top: 50px;
-  border-radius: 30px;
-  font-size: 18px;
-  line-height: 50px;
-  text-align: center;
-  color: white;
-}
+  /*地址详情容器*/
+  .addressdetail {
+    margin: 20px 0;
+    border-radius: 40rpx;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+    .detail_name {
+      height: 40px;
+      font-size: 15px;
+      text-align: center;
+      line-height: 40px;
+      border-radius: 40rpx 40rpx 0 0;
+      color: white;
+      background-color: rgb(255, 87, 0);
+    }
+
+    .detail_info {
+      height: 160px;
+      width: 100%;
+      background-color: white;
+      border-radius: 0 0 30rpx 30rpx;
+    }
+
+    .detail_info_sgl {
+      height: 32px;
+      width: 100%;
+      font-size: 12px;
+      text-align: left;
+      line-height: 32px;
+      padding-left: 15px;
+    }
+  }
+
+  /*新建地址按钮*/
+  .add {
+    height: 50px;
+    width: 50%;
+    background-color: rgb(255, 87, 0);
+    margin-top: 50px;
+    border-radius: 30px;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+  }
 </style>
 <template>
   <div class="container">
@@ -117,7 +128,10 @@
     <div class="addressbox">
       <div v-for="item in addresslist" :key="item.id" class="addressinfo">
         <div class="address-title" @tap="showdetail(item.id)">
-          <div class="addressinfo_text"><div v-if="item.id==precompileid">(默认)</div>{{item.college}}-{{item.door}}</div>
+          <div class="addressinfo_text">
+            <div v-if="item.id==precompileid">(默认)</div>
+            {{item.college}}-{{item.door}}
+          </div>
           <img src="../image/编辑按钮.png" class="addressinfo_cicon" @tap.stop="edit(item.id)" />
         </div>
         <div class="addressdetail" v-if="currentid[item.id]">
@@ -137,77 +151,76 @@
 </template>
 
 <script>
-import wepy from '@wepy/core';
-wepy.page({
-  data: {
-    currentid: [],
-    precompileid:[],
-    addresslist: [],//渲染
-    num:[1,2],
-  },
+  import wepy from '@wepy/core';
+  wepy.page({
+    data: {
+      currentid: [],
+      precompileid: [],
+      addresslist: [], //渲染
+      num: [1, 2]
+    },
     //页面一旦显示执行的代码
-  onShow(){
-      this.addresslist=wx.getStorageSync("address")
-      this.precompileid = wx.getStorageSync("precompileid")
-  },
-  beforeCreate() {},
-  created() {
-
-    var getdata = new Promise((resolve, reject) => {
-      try {
-        var value = wx.getStorageSync('address');
-        resolve(value);
-      } catch (e) {
-        reject(e);
-      }
-    });
-    getdata
-      .then(value => {
-        // this.addresslist = value;
-        // console.log(this.addresslist)
-        this.currentid = value.map(() => {
-          return false; //初始化
-        });
-      })
-      .catch(e => {
-        console.log(e);
+    onShow() {
+      this.addresslist = wx.getStorageSync('address');
+      this.precompileid = wx.getStorageSync('precompileid');
+    },
+    beforeCreate() { },
+    created() {
+      var getdata = new Promise((resolve, reject) => {
+        try {
+          var value = wx.getStorageSync('address');
+          resolve(value);
+        } catch (e) {
+          reject(e);
+        }
       });
-  },
-  computed: {
+      getdata
+        .then(value => {
+          // this.addresslist = value;
+          // console.log(this.addresslist)
+          this.currentid = value.map(() => {
+            return false; //初始化
+          });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    computed: {
       //默认地址id
-      precompileid(){
-          return wx.getStorageSync("precompileid")
+      precompileid() {
+        return wx.getStorageSync('precompileid');
       }
       // addresslist(){
       //     return wx.getStorageSync("address")
       // }
-  },
+    },
 
-  methods: {
-    plus: function() {
+    methods: {
+      plus: function () {
         // wx.removeStorage({key:"address"})
         // wx.setStorageSync("addressnum",0)
         wx.navigateTo({
-            //isadd跳转到修改地址页面时判断是增加地址还是修改地址，默认值为修改地址
-            url: '/pages/caddress?isadd=' + 1
+          //isadd跳转到修改地址页面时判断是增加地址还是修改地址，默认值为修改地址
+          url: '/pages/caddress?isadd=' + 1
         });
-    },
-    navback: function() {
-      wx.navigateBack();
-    },
-    edit: function(id) {
-      wx.navigateTo({
-        //isadd跳转到修改地址页面时判断是增加地址还是修改地址，默认值为修改地址
-        url: '/pages/caddress?isadd=' + 0 + '&addressid=' + id
-      });
-    },
-    showdetail: function(id) {
-      let temp = this.currentid.slice(); //深拷贝
-      temp[id] = !temp[id];
-      this.currentid = temp;
+      },
+      navback: function () {
+        wx.navigateBack();
+      },
+      edit: function (id) {
+        wx.navigateTo({
+          //isadd跳转到修改地址页面时判断是增加地址还是修改地址，默认值为修改地址
+          url: '/pages/caddress?isadd=' + 0 + '&addressid=' + id
+        });
+      },
+      showdetail: function (id) {
+        let temp = this.currentid.slice(); //深拷贝
+        temp[id] = !temp[id];
+        this.currentid = temp;
+      }
     }
-  }
-});
+  });
 </script>
 <config>
   {
