@@ -313,12 +313,12 @@ wepy.page({
         this.$app.$options.globalData = e.$wx.detail.userInfo;
         this.userInfo = e.$wx.detail.userInfo;
         this.hasUserInfo = true;
-        await auth.login();
         wx.showToast({
           title: '授权成功',
           icon: 'success',
           duration: 1500
         });
+        await auth.login();
       } else {
         console.log('授权失败');
         wx.showToast({
@@ -336,28 +336,6 @@ wepy.page({
   },
   async created() {
     console.log('created', this.hasUserInfo);
-    // if (this.canIUse) {
-    //   console.log('index page created');
-    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //   // 所以此处加入 callback 以防止这种情况
-    //   this.$app.userInfoReadyCallback = res => {
-    //     console.log('userInfoReadyCaallback回调', res);
-    //     this.userInfo = res.userInfo;
-    //     this.hasUserInfo = true;
-    //     this.$children[0].userInfo = res.userInfo;
-    //   };
-    // }
-    // else {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   wx.getUserInfo({
-    //     success: res => {
-    //       console.log('兼容回调', res);
-    //       this.$app.$options.globalData.userInfo = res.userInfo;
-    //       this.userInfo = res.userInfo;
-    //       this.hasUserInfo = true;
-    //     }
-    //   });
-    // }
   },
   onShow() {}
 });

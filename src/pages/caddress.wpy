@@ -214,6 +214,8 @@
 
 <script>
 import wepy from '@wepy/core';
+import address from'../utils/address.js'
+
 wepy.page({
   onLoad(options) {
     //根据页面传递入的参数判断是修改地址还是添加地址

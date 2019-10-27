@@ -72,8 +72,10 @@ wepy.page({
         url: '/pages/paysuccess'
       });
     },
-    cancel: function() {
-      wx.navigateBack();
+    cancel: ()=> {
+      wx.navigateBack({
+        delta: 1
+      });
     }
   }
 });

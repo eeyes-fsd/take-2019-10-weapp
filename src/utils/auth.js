@@ -23,35 +23,24 @@ const POST = (url, param = {}, token = "") => {
 }
 //刷新token
 const refreshToken = async () => {
-    let response;
-    await wepy.wx.getStorage('access_token')
-        .then(res => {
-            console.log(res.data)
-            return POST('/authorizations/current', {}, res.data)
-        })
-        .then(res => {
-            if (res.data.access_token) {
-                wepy.wx.setStorage({
-                    key: "access_token",
-                    data: res.data.access_token
-                })
-                response = res
-            }
-        })
+    let access_token = await wepy.wx.getStorage('access_token')
+    let response = await POST('/authorizations/current', {}, access_token.data)
+    await wepy.wx.setStorage({
+        key: "access_token",
+        data: response.data.access_token
+    })
+    await wepy.wx.setStorage({
+        key: "expires_in",
+        data: new Date().getTime() + response.data.expires_in
+    })
     return response
 }
 const getToken = async () => {
     // 从缓存中取出 Token
     let accessToken, expires_in;
-    await wepy.wx.getStorage('access_token')
-        .then(res => {
-            accessToken = res.data || ""
-        });
+    accessToken = await wepy.wx.getStorage('access_token')
     //取出有效期
-    await wepy.wx.getStorage('expires_in')
-        .then(res => {
-            expires_in = res.data || ""
-        });
+    expires_in = await wepy.wx.getStorage('expires_in')
     // 如果 token 过期了，则调用刷新方法
     if (new Date().getTime() > expires_in) {
         let refreshResponse = await refreshToken()
@@ -62,39 +51,30 @@ const getToken = async () => {
         } else {
             // 刷新失败了，重新调用登录方法，设置 Token
             let authResponse = await login()
-            if (authResponse.statusCode === 201) {
-                accessToken = authResponse.data.access_token
-            }
+            accessToken = authResponse.data.access_token
         }
     }
     return accessToken
 }
-const login = () => {
+const login = async () => {
     //promise化login
-    wepy.promisify(wx.login)()
-        .then(res => {
-            //发送登录请求
-            return POST('/weapp/authorizations', { code: res })
+    let code = (await wepy.promisify(wx.login)()).code
+    let authResponse = await POST('/weapp/authorizations', { code: code }).catch(err => {
+        console.log(err)
+        wx.showToast({
+            title: '似乎网络不通',
+            duration: 2000
         })
-        .catch(err => {
-            console.log(err)
-            wx.showToast({
-                title: '似乎出了什么问题',
-                duration: 2000
-            })
-        })
-        .then(res => {
-            //写入token
-            wepy.wx.setStorage({
-                key: "access_token",
-                data: res.data.access_token
-            })
-            //写入过期日期
-            wepy.wx.setStorage({
-                key: 'expires_in',
-                data: new Date().getTime() + res.data.expires_in
-            })
-        })
+    })
+    await wepy.wx.setStorage({
+        key: "access_token",
+        data: authResponse.data.access_token
+    })
+    await wepy.wx.setStorage({
+        key: "expires_in",
+        data: new Date().getTime() + authResponse.data.expires_in
+    })
+    return authResponse
 }
 export default {
     login,
