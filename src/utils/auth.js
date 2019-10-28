@@ -76,6 +76,7 @@ const login = async () => {
     })
     return authResponse
 }
+export { getToken }
 export default {
     login,
     refreshToken,
