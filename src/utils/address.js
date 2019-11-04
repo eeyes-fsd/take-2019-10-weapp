@@ -1,5 +1,5 @@
 import wepy from '@wepy/core';
-import auth from './auth.js'
+import {getToken} from './auth.js'
 
 const api_host = 'http://127.0.0.1:3000';
 
@@ -26,7 +26,7 @@ const POST = (url, param = {}, token = "") => {
 
 //获取地址列表，默认全部
 const getAddresses = async (i) => {
-    let token = await auth.getToken()
+    let token = await getToken()
     let res = await wepy.promisify(wx.request)({
         url: i ? `${api_host}/addresses/${i}` : `${api_host}/addresses`,
         method: 'GET',
@@ -36,7 +36,7 @@ const getAddresses = async (i) => {
 }
 //删除地址
 const deleteAddress = async (i) => {
-    let token = await auth.getToken()
+    let token = await getToken()
     let res = await wepy.promisify(wx.request)({
         url: `/addresses/${i}`,
         method: 'DELETE',
@@ -49,7 +49,7 @@ const deleteAddress = async (i) => {
 }
 //修改地址
 const updateAddress = async (i, param) => {
-    let token = await auth.getToken()
+    let token = await getToken()
     let res = await wepy.promisify(wx.request)({
         url: `${api_host}/addresses/${i}`,
         method: 'PUT',

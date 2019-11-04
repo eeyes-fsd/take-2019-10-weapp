@@ -57,7 +57,7 @@
 
       .addressinfo_text {
         display: flex;
-        flex-display: row;
+        flex-direction: row;
         font-size: 33rpx;
         margin-left: 30rpx;
         color: black;
@@ -152,20 +152,24 @@
 
 <script>
 import wepy from '@wepy/core';
-import address from'../utils/address.js'
+import address from '../utils/address.js';
 wepy.page({
   data: {
     currentid: [],
     precompileid: [],
-    addresslist: [], //渲染
+    addresslist: [] //渲染
   },
   //页面一旦显示执行的代码
   onShow() {
     this.precompileid = wx.getStorageSync('precompileid');
   },
   async created() {
-    this.addresslist = await address.getAddresses().catch(e=>{console.log(e)})
-    //this.currentid=this.addresslist.map(()=>{return false})
+    this.addresslist = await address.getAddresses().catch(e => {
+      console.log(e);
+    });
+    this.currentid = this.addresslist.map(() => {
+      return false;
+    });
   },
   computed: {
     //默认地址id
