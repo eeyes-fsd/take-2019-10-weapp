@@ -255,10 +255,13 @@ wepy.page({
   },
   methods: {
       //修改地址
-    edit: function() {
+    edit: async function() {
         if(this.name==''||this.college==''||this.door==''||this.tele==''||this.remark==''){
             //如果输入值不符合规范要取消提交并提示,还未优化，只修改一个信息的时候也应该可以提交
-            wx.showToast()
+          wx.showToast({
+            title: '修改出错',
+            duration: 2000
+          })
         }else{
             this.editaddress.name=this.name
             this.editaddress.college=this.college
@@ -271,15 +274,22 @@ wepy.page({
                 }
             }
             wx.setStorageSync("address",this.addressfile)
-            console.log("修改成功!")
+            wx.showToast({
+              title: '修改成功',
+              duration: 2000
+            })
+           await address.updateAddress(this.addressid,this.editaddress).catch(e=>{console.log(e)})//提交修改的地址的id，以及修改后的内容
         }
     },
 
       //新建地址
-    save:function(){
+     save:async function(){
         if(this.name==''||this.college==''||this.door==''||this.tele==''||this.remark==''){
             //如果输入值不符合规范要取消提交并提示
-            wx.showToast()
+          wx.showToast({
+            title: '不合规范',
+            duration: 2000
+          })
         }else{
             var addressnum=wx.getStorageSync("addressnum")
             if(addressnum=='') {addressnum=1;wx.setStorageSync("addressnum",addressnum)}
@@ -294,23 +304,23 @@ wepy.page({
             console.log(data)
             if(data=='') data=this.address
             else data.push(this.address[0])
-            console.log(data)
-            wx.setStorage({
+            await wepy.wx.setStorage({
                 key:"address",
                 data:data
             })
+            await address.addAddress(this.address[0]).catch(e=>{console.log(e)})//将新的地址上传服务器,this.address[0]
         }
     },
 
       //删除地址
-    deleteaddress:function(){
+     deleteaddress: async function(){
         for(var j in this.addressfile){
             if(this.addressfile[j].id==this.addressid){
                 this.addressfile.splice(j,1)
                 wx.setStorageSync("address",this.addressfile)
             }
         }
-        console.log("删除成功!")
+        await address.deleteAddress(this.addressid).catch(e=>{console.log(e)}) //删除的id为当前选中的address的id
         wx.navigateBack();
     },
     navback: function() {
@@ -318,7 +328,10 @@ wepy.page({
     },
     setprecompile:function(){
       wx.setStorageSync("precompileid",this.addressid)
-        console.log("设置成功")
+      wx.showToast({
+        title: '设置成功',
+        duration: 2000
+      })
     },
   },
   computed:{

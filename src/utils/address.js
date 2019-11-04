@@ -1,7 +1,29 @@
 import wepy from '@wepy/core';
 import auth from './auth.js'
 
-const api_host = 'http://127.0.0.1:3000'
+const api_host = 'http://127.0.0.1:3000';
+
+const POST = (url, param = {}, token = "") => {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      method: 'POST',
+      header: {
+        'Content-Type': token ? "" : 'application/json',
+        'Authorization': token ? `Bearer ${token}` : ''
+      },
+      url: `${api_host}${url}`,
+      data: param,
+      success: (res) => {
+        resolve(res)
+      },
+      fail: (err) => {
+        reject(err)
+      }
+    })
+  });
+}
+
+
 //获取地址列表，默认全部
 const getAddresses = async (i) => {
     let token = await auth.getToken()
@@ -39,10 +61,22 @@ const updateAddress = async (i, param) => {
     })
     return res
 }
-// const 
+// const
+
+const addAddress = async (param) => {
+  let addResponse = await POST('/addresses/',param).catch(err => {
+    console.log(err)
+    wx.showToast({
+      title: '增加失败',
+      duration: 2000
+    })
+  })
+  return addResponse
+}
 
 export default {
     getAddresses,
     deleteAddress,
-    updateAddress
+    updateAddress,
+    addAddress
 }

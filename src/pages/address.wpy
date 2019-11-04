@@ -122,7 +122,7 @@
   <div class="container">
     <div class="back">
       <img src="../image/箭头.png" class="back-icon" @click="navback" />
-      <div class="back-text">我的地址</div>
+        <div class="back-text">我的地址</div>
       <img class="back-icon" />
     </div>
     <div class="addressbox">
@@ -130,7 +130,7 @@
         <div class="address-title" @tap="showdetail(item.id)">
           <div class="addressinfo_text">
             <div v-if="item.id==precompileid">(默认)</div>
-            {{item.college}}-{{item.door}}
+            {{item.college}}-{{item.details}}
           </div>
           <img src="../image/编辑按钮.png" class="addressinfo_cicon" @tap.stop="edit(item.id)" />
         </div>
@@ -165,7 +165,7 @@ wepy.page({
   },
   async created() {
     this.addresslist = await address.getAddresses().catch(e=>{console.log(e)})
-    this.currentid=this.addresslist.map(()=>{return false})
+    //this.currentid=this.addresslist.map(()=>{return false})
   },
   computed: {
     //默认地址id
