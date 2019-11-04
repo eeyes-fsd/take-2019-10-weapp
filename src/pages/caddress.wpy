@@ -289,11 +289,7 @@ wepy.page({
             })
            await address.updateAddress(this.addressid,this.editaddress).catch(e=>{console.log(e)})//提交修改的地址的id，以及修改后的内容
         }
-        wx.setStorageSync('address', this.addressfile);
-        console.log('修改成功!');
-      }
-    },
-
+     },
       //新建地址
      save:async function() {
        if (this.name == '' || this.college == '' || this.door == '' || this.tele == '' || this.remark == '') {
@@ -352,6 +348,11 @@ wepy.page({
         duration: 2000
       })
     },
+    setprecompile: function() {
+      wx.setStorageSync('precompileid', this.addressid);
+      console.log('设置成功');
+    }
+  },
   computed: {
     //默认地址id
     precompileid() {
