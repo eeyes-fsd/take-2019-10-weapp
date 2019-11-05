@@ -64,7 +64,8 @@ const updateAddress = async (i, param) => {
 // const
 
 const addAddress = async (param) => {
-  let addResponse = await POST('/addresses/',param).catch(err => {
+  let token = await getToken()
+  let addResponse = await POST('/addresses/',`${param}`,`${token}`).catch(err => {
     console.log(err)
     wx.showToast({
       title: '增加失败',
