@@ -122,7 +122,7 @@
   <div class="container">
     <div class="back">
       <img src="../image/箭头.png" class="back-icon" @click="navback" />
-        <div class="back-text">我的地址</div>
+      <div class="back-text">我的地址</div>
       <img class="back-icon" />
     </div>
     <div class="addressbox">
@@ -160,17 +160,20 @@ wepy.page({
     addresslist: [] //渲染
   },
   //页面一旦显示执行的代码
-  onShow() {
+  async onShow() {
     this.precompileid = wx.getStorageSync('precompileid');
-  },
-  async created() {
     this.addresslist = await address.getAddresses().catch(e => {
       console.log(e);
+    });
+    await wepy.wx.setStorage({
+      key: 'address',
+      data: this.addresslist
     });
     this.currentid = this.addresslist.map(() => {
       return false;
     });
   },
+  created() {},
   computed: {
     //默认地址id
     precompileid() {

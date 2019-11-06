@@ -61,18 +61,17 @@
 
 <script>
 import wepy from '@wepy/core';
+import order from '../utils/order.js';
 wepy.page({
   data: {
     price: 0
   },
   methods: {
     // 支付跳转
-    paysuccess: function(event) {
-      wx.navigateTo({
-        url: '/pages/paysuccess'
-      });
+    paysuccess: async function(event) {
+      await order.pay();
     },
-    cancel: ()=> {
+    cancel: () => {
       wx.navigateBack({
         delta: 1
       });

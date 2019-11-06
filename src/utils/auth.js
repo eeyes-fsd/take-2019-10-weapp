@@ -66,14 +66,16 @@ const login = async () => {
             duration: 2000
         })
     })
-    await wepy.wx.setStorage({
-        key: "access_token",
-        data: authResponse.data.access_token
-    })
-    await wepy.wx.setStorage({
-        key: "expires_in",
-        data: new Date().getTime() + authResponse.data.expires_in
-    })
+    if (authResponse) {
+        await wepy.wx.setStorage({
+            key: "access_token",
+            data: authResponse.data.access_token
+        })
+        await wepy.wx.setStorage({
+            key: "expires_in",
+            data: new Date().getTime() + authResponse.data.expires_in
+        })
+    }
     return authResponse
 }
 export { getToken }
