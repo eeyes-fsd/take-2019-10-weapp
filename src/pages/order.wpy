@@ -70,47 +70,44 @@
       <div class="back-text">我的订单</div>
       <img class="back-icon" />
     </div>
-    <div class="orderbox">
+    <div class="orderbox" v-for="i in orders" :key="i.id">
       <div class="order_head">当前订单</div>
       <div class="order_detail">
-        <div class="order_detail_sgl">下单时间:</div>
+        <div class="order_detail_sgl">下单时间:{{i.created_at}}</div>
         <div class="order_detail_sgl">商品：</div>
         <div class="order_detail_sgl">配送人员：</div>
       </div>
     </div>
-    <div class="orderbox">
+    <!-- <div class="orderbox">
       <div class="order_head">历史订单</div>
       <div class="order_detail">
         <div class="order_detail_sgl">下单时间:</div>
         <div class="order_detail_sgl">商品：</div>
         <div class="order_detail_sgl">配送人员：</div>
       </div>
-    </div>
-    <div class="orderbox">
-      <div class="order_head">历史订单</div>
-      <div class="order_detail">
-        <div class="order_detail_sgl">下单时间:</div>
-        <div class="order_detail_sgl">商品：</div>
-        <div class="order_detail_sgl">配送人员：</div>
-      </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import wepy from '@wepy/core';
+import { getOrders } from '../utils/order.js';
 wepy.page({
-  data:{
-      currentorder:[],
-      historyorder:[],
+  data: {
+    orders: []
   },
-  computed:{
-      //暂时先用缓存代替，之后再改成网络请求
-    currentorder(){
-        return wx.getStorageSync("currentorder")
+  async onShow() {
+    let s = await getOrders();
+    this.orders = s.data;
+    console.log(s)
+  },
+  computed: {
+    //暂时先用缓存代替，之后再改成网络请求
+    currentorder() {
+      return wx.getStorageSync('currentorder');
     },
-    historyorder(){
-        return wx.getStorageSync("historyorder")
+    historyorder() {
+      return wx.getStorageSync('historyorder');
     }
   },
   methods: {
