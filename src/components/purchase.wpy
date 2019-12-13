@@ -86,7 +86,7 @@
     </div>
     <div class="list-container">
       <div v-for="(item,id) in search" :key="id" class="items">
-        <img class="item-image" />
+        <img class="item-image" src="../image/{{item.imagesrc}}"/>
         <div>{{item.name}}</div>
         <div class="selection">
           <div v-if="item.quantity">

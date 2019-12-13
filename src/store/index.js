@@ -7,32 +7,39 @@ export default new Vuex.Store({
     goodslist: [
       {
         name: '菠萝',
+		imagesrc: 'pineapple.png',
         id: '123',
         quantity: 0
       },
       {
         name: '苹果',
+		imagesrc: 'apple.png',
         id: '12345',
         quantity: 0
       },
-      {
-        name: '里头',
-        id: '1245',
-        quantity: 0
-      },
-      {
+	  {
         name: '桃子',
+		imagesrc: 'peach.jpg',
         id: '2345',
         quantity: 0
       },
       {
-        name: 'peach',
-        id: '23452',
+        name: '榴莲',
+		imagesrc: 'liulian.jpg',
+        id: '23945',
         quantity: 0
       },
       {
-        name: 'liulian',
-        id: '23945',
+        name: '菠萝',
+		imagesrc: 'pineapple.png',
+        id: '1245',
+        quantity: 0
+      },
+      
+      {
+        name: 'taozi',
+		imagesrc: 'peach.jpg',
+        id: '23452',
         quantity: 0
       }
     ]

@@ -124,7 +124,7 @@
       <img src="../image/箭头.png" class="back-icon" @click="navback" />
       <div class="back-text">我的地址</div>
       <img class="back-icon" />
-    </div>
+    </div
     <div class="addressbox">
       <div v-for="item in addresslist" :key="item.id" class="addressinfo">
         <div class="address-title" @tap="showdetail(item.id)">

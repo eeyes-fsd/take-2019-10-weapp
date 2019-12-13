@@ -213,7 +213,7 @@
         <div class="cart" v-show="cartshow">
           <div v-if="isempty">购物车还是空的哦~</div>
           <div v-for="item in cartlist" :key="item.id" class="item">
-            <img class="item-image" />
+            <img class="item-image" src="../image/{{item.imagesrc}}"/>
             <div>{{item.name}}</div>
             <div class="selection">
               <div>
