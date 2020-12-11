@@ -710,6 +710,11 @@
   resolved "https://registry.npm.taobao.org/@wepy/core/download/@wepy/core-2.0.0-alpha.11.tgz#de38dde60d89eb8b4be76ad1d8bb35b5cbf94a52"
   integrity sha1-3jjd5g2J64tL52rR2Ls1tcv5SlI=
 
+"@wepy/use-promisify@^2.0.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@wepy/use-promisify/-/use-promisify-2.1.0.tgz#a6b9781082802d977de620ee760a5ab3a228b60a"
+  integrity sha512-wkGBzjye7RprpjExh2mSuU4i08umOTgpMwkLgrm64AS3RcbB8nJ225408GofrrzZuAumvNfiDX6nsvzRFqALwA==
+
 "@wepy/x@^2.0.2":
   version "2.0.2"
   resolved "https://registry.npm.taobao.org/@wepy/x/download/@wepy/x-2.0.2.tgz#2ab0a8473fd73cebf1d6fcf6001180674eaad1e9"
@@ -2633,9 +2638,9 @@ inherits@2, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.1, inherits@~2.0.3:
   integrity sha1-D6LGT5MpF8NDOg3tVTY6rjdBa3w=
 
 ini@^1.3.4, ini@~1.3.0:
-  version "1.3.5"
-  resolved "https://registry.npm.taobao.org/ini/download/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
-  integrity sha1-7uJfVtscnsYIXgwid4CD9Zar+Sc=
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
+  integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
 inquirer@^0.12.0:
   version "0.12.0"
